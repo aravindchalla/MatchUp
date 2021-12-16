@@ -2,11 +2,16 @@ import axios from 'axios';
 import { mockImgCover } from '../../utils/mockImages';
 
 export default async function CreateBlog(blogtitle){
+    let today = new Date();
     const blog = {
         "title" : blogtitle,
-        "author": {
-            "avatarUrl": `/static/mock-images/avatars/avatar_${Math.floor(Math.random() * (24) + 1)}.jpg`
-        }
+        "cover": mockImgCover(Math.floor(Math.random() * (24)  + 1)),
+        "avatarUrl": `/static/mock-images/avatars/avatar_${Math.floor(Math.random() * (24) + 1)}.jpg`,
+        "popularity" : Math.floor(Math.random() * (11)),
+        "createdAt" : today,
     }
-    return await axios.post("http://localhost:5000/blogs",blog)
+    if(blogtitle) {
+        return await axios.post("http://localhost:5000/blogs",blog)
+    }
+    return null;
 }

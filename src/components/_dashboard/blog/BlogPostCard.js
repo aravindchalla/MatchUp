@@ -52,13 +52,8 @@ const CoverImgStyle = styled('img')({
 
 // ----------------------------------------------------------------------
 
-BlogPostCard.propTypes = {
-  post: PropTypes.object.isRequired,
-  index: PropTypes.number
-};
-
-export default function BlogPostCard({ post, index }) {
-  const { cover, title, view, comment, share, author, createdAt } = post;
+export default function BlogPostCard(props) {
+  const { cover, title, view, avatarUrl, index } = props;
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;
 
@@ -103,8 +98,7 @@ export default function BlogPostCard({ post, index }) {
             }}
           />
           <AvatarStyle
-            alt={author.name}
-            src={author.avatarUrl}
+            src={avatarUrl}
             sx={{
               ...((latestPostLarge || latestPost) && {
                 zIndex: 9,

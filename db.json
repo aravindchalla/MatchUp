@@ -48,25 +48,125 @@
   ],
   "blogs": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": {
-        "avatarUrl": ""
-      }
+      "title": "hi",
+      "cover": "/static/mock-images/covers/cover_15.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_5.jpg",
+      "createdAt": "2021-12-14T18:54:59.632Z",
+      "popularity": 5,
+      "id": 1
     },
     {
-      "title": "Blog 1",
-      "author": {
-        "avatarUrl": "/static/mock-images/avatars/avatar_3.jpg"
-      },
+      "title": "hello",
+      "cover": "/static/mock-images/covers/cover_16.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_10.jpg",
+      "popularity": 0,
+      "createdAt": "2021-12-14T18:55:12.698Z",
       "id": 2
     },
     {
-      "title": "Hello",
-      "author": {
-        "avatarUrl": "/static/mock-images/avatars/avatar_11.jpg"
-      },
+      "title": "test",
+      "cover": "/static/mock-images/covers/cover_12.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_2.jpg",
+      "popularity": 8,
+      "createdAt": "2021-12-14T18:55:25.956Z",
       "id": 3
+    },
+    {
+      "title": "test1",
+      "cover": "/static/mock-images/covers/cover_6.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_19.jpg",
+      "popularity": 7,
+      "createdAt": "2021-12-15T05:19:27.417Z",
+      "id": 4
+    },
+    {
+      "title": "Test3",
+      "cover": "/static/mock-images/covers/cover_8.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_16.jpg",
+      "popularity": 2,
+      "createdAt": "2021-12-15T05:21:00.791Z",
+      "id": 5
+    },
+    {
+      "title": "hello hi",
+      "cover": "/static/mock-images/covers/cover_4.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_9.jpg",
+      "popularity": 6,
+      "createdAt": "2021-12-15T05:27:46.753Z",
+      "id": 6
+    },
+    {
+      "title": "hiiiii",
+      "cover": "/static/mock-images/covers/cover_12.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_6.jpg",
+      "popularity": 7,
+      "createdAt": "2021-12-15T05:28:24.769Z",
+      "id": 7
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "cover": "/static/mock-images/products/product_1.jpg",
+      "name": "productname",
+      "price": 50,
+      "createdAt": ""
+    },
+    {
+      "cover": "/static/mock-images/products/product_1.jpg",
+      "name": "Product 1",
+      "price": 55,
+      "createdAt": "2021-12-16T07:14:14.788Z",
+      "id": 2
+    },
+    {
+      "cover": "/static/mock-images/products/product_24.jpg",
+      "name": "Product 2",
+      "price": "100",
+      "createdAt": "2021-12-16T07:20:44.145Z",
+      "id": 3
+    },
+    {
+      "cover": "/static/mock-images/products/product_12.jpg",
+      "name": "Product 4",
+      "price": "100",
+      "createdAt": "2021-12-16T07:21:39.354Z",
+      "id": 4
+    },
+    {
+      "cover": "/static/mock-images/products/product_21.jpg",
+      "name": "Test",
+      "price": "100",
+      "createdAt": "2021-12-16T07:42:04.984Z",
+      "id": 5
+    },
+    {
+      "cover": "/static/mock-images/products/product_9.jpg",
+      "name": "Hello",
+      "price": "44",
+      "createdAt": "2021-12-16T07:43:00.043Z",
+      "id": 6
+    },
+    {
+      "cover": "/static/mock-images/products/product_21.jpg",
+      "name": "A product",
+      "price": "2",
+      "createdAt": "2021-12-16T08:23:27.543Z",
+      "id": 7
+    },
+    {
+      "cover": "/static/mock-images/products/product_13.jpg",
+      "name": "Z product",
+      "price": "10",
+      "createdAt": "2021-12-16T08:23:40.039Z",
+      "id": 8
+    },
+    {
+      "cover": "/static/mock-images/products/product_9.jpg",
+      "name": "zzzzz",
+      "price": "5",
+      "createdAt": "2021-12-16T08:24:43.973Z",
+      "id": 9
     }
   ]
 }

@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux'
 import { Icon } from '@iconify/react';
+import searchFill from '@iconify/icons-eva/search-fill';
+// material
+import { styled } from '@material-ui/core/styles';
 import plusFill from '@iconify/icons-eva/plus-fill';
-import { Link as RouterLink } from 'react-router-dom';
 // material
 import { Grid, Button, Container, Stack, Typography } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
@@ -9,33 +12,117 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import DialogTitle from '@mui/material/DialogTitle';
 // components
+import { Box, InputAdornment } from '@material-ui/core';
 import Page from '../components/Page';
-import { BlogPostCard , BlogDailog} from '../components/_dashboard/blog';
-//
-import POSTS from '../_mocks_/blog';
+import { BlogPostCard } from '../components/_dashboard/blog';
 import { connect } from 'react-redux'
 // ------------------------------
-import {CreateBlog} from '../APIcalls/Blog';
+import {CreateBlog , GetBlogs} from '../APIcalls/Blog';
 
+const RootStyle = styled('div')(({ theme }) => ({
+  '& .MuiAutocomplete-root': {
+    width: 200,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.shorter
+    }),
+    '&.Mui-focused': {
+      width: 240,
+      '& .MuiAutocomplete-inputRoot': {
+        boxShadow: theme.customShadows.z12
+      }
+    }
+  },
+  '& .MuiAutocomplete-inputRoot': {
+    '& fieldset': {
+      borderWidth: `1px !important`,
+      borderColor: `${theme.palette.grey[500_32]} !important`
+    }
+  },
+  '& .MuiAutocomplete-option': {
+    '&:not(:last-child)': {
+      borderBottom: `solid 1px ${theme.palette.divider}`
+    }
+  }
+}));
 
-function Blog({blogs}) {
+function Blog(props) {
   const [openDailog,setOpenDailog] = React.useState(false);
   const handleClose = () => {
     setOpenDailog(false);
   };
+  const [serachValue,setSerachValue] = React.useState('')
+  const AllBlogs = useSelector((state) => state.blogReducer);
+
+  
+  const [filteredBlogs, SetFilteredBlogs] = React.useState(AllBlogs);
+  
   const [blogTitle,setBlogTitle] = React.useState('');
   React.useEffect(() => {
-    console.log(openDailog)
-  })
+   console.log(serachValue)
+    GetBlogs()
+    .then((res => {
+      console.log(res.data);
+      props.dispatch({
+        type: "ADD_FETCHED_DATA",
+        payload: res.data
+      })
+    }))
+    if (serachValue) {
+      const reqData = AllBlogs.map((blog, index) => {
+        if( blog.title.toLowerCase().indexOf(serachValue.toLowerCase()) >= 0 ) {
+          return blog;
+        };
+        return null
+      });
+      SetFilteredBlogs(
+        reqData.filter(val => {
+          if (val) return true;
+          return false;
+        })
+      );
+    } else SetFilteredBlogs(AllBlogs);
+
+    console.log(filteredBlogs)
+
+  },[serachValue])
 
   const SaveBlog = (e) => {
     e.preventDefault();
     if(blogTitle){
       CreateBlog(blogTitle)
+      .then(() =>{
+        props.dispatch({
+          type : "GET_STATE",
+        })
+      })
     }
     setOpenDailog(false);
+  }
+
+  const onSort = (e) => {
+    e.preventDefault();
+    switch(e.target.value) {
+      case "Latest" : return props.dispatch({ 
+        type : "SORT_BY_LATEST",
+        payload: AllBlogs
+      })
+      case "Popularity" : return props.dispatch({ 
+        type : "SORT_BY_POPULARITY",
+        payload: AllBlogs
+      }) 
+      case "Oldest" : return props.dispatch({ 
+        type : "SORT_BY_OLDEST",
+        payload: AllBlogs
+      })
+      default : break;
+    }
   }
   return (
     <Page title="Dashboard: Blog">
@@ -70,16 +157,67 @@ function Blog({blogs}) {
           <Button
             type="button"
             variant="contained"
-            onClick={() => {console.log("Clicked on");setOpenDailog(true)}}
+            onClick={() => {setOpenDailog(true)}}
             startIcon={<Icon icon={plusFill} />}
           >
             New Post
           </Button>
         </Stack>
+        <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
+          <RootStyle>
+                <TextField
+                  placeholder="Search Blog..."
+                  onChange={(e) => setSerachValue(e.target.value)}
+                  InputProps={{
+                    startAdornment: (
+                      <>
+                        <InputAdornment position="start">
+                          <Box
+                            component={Icon}
+                            icon={searchFill}
+                            sx={{
+                              ml: 1,
+                              width: 20,
+                              height: 20,
+                              color: 'text.disabled'
+                            }}
+                          />
+                        </InputAdornment>
+                      </>
+                    )
+                  }}
+                />
+          </RootStyle>
+        <FormControl sx={{ m: 1, minWidth: 80 }}>
+        <InputLabel id="demo-simple-select-autowidth-label">Sort</InputLabel>
+        <Select
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
+          onChange={(e) => onSort(e)}
+          autoWidth
+          label="Sort"
+        >
+            <MenuItem key="latest" value="Latest">
+                Latest
+              </MenuItem>
+              <MenuItem key="popularity" value="Popularity">
+                Popularity
+              </MenuItem>
+              <MenuItem key="oldest" value="Oldest">
+                Oldest
+              </MenuItem>
+        </Select>
+      </FormControl>
+
+        </Stack>
         <Grid container spacing={3}>
-          {POSTS.map((post, index) => (
-            <BlogPostCard key={post.id} post={post} index={index} />
-          ))}
+          {
+            filteredBlogs.length > 0 ? Object.keys(filteredBlogs).map(function(key, index) {
+             return <BlogPostCard cover={filteredBlogs[key].cover} title={filteredBlogs[key].title} view="" avatarUrl={filteredBlogs[key].avatarUrl} key={filteredBlogs[key].id} index={index} />
+            }) : Object.keys(AllBlogs).map(function(key, index) {
+              return <BlogPostCard cover={AllBlogs[key].cover} title={AllBlogs[key].title} view="" avatarUrl={AllBlogs[key].avatarUrl} key={AllBlogs[key].id} index={index} />
+            }) 
+          }
         </Grid>
       </Container>
     </Page>
