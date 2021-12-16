@@ -204,8 +204,7 @@ export default function EcommerceShop() {
         <DialogTitle>Sell Product</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+          Sell Products by sharing about their product and the price you want to sell it at.
           </DialogContentText>
           <TextField
             autoFocus

@@ -131,8 +131,7 @@ function Blog(props) {
         <DialogTitle>Add Blog</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+          Add Blogs where users can spend their free time reading about fresh arrivals, new products, trending sales etc...
           </DialogContentText>
           <TextField
             autoFocus

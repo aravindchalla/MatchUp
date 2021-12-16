@@ -1,7 +1,7 @@
 // -----------------
 const account = {
-  displayName: 'Jaydon Frankie',
-  email: 'demo@minimals.cc',
+  displayName: 'John',
+  email: 'John@matchup.in',
   photoURL: '/static/mock-images/avatars/avatar_default.jpg'
 };
 
