@@ -16,16 +16,30 @@ import {
   FormControlLabel
 } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
-import {Signin} from '../../../APIcalls/Auth'
+import {Signin} from '../../../APIcalls/Auth';
+import Snackbar from '@mui/material/Snackbar';
+
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [openSnack ,setOpenSnack] = useState(false);
+  const [state, setState] = useState({
+    vertical: 'top',
+    horizontal: 'center',
+  });
+
+  const { vertical, horizontal } = state;
+  const [snackMsg, setSnackMsg] = useState("");
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Email must be a valid email address').required('Email is required'),
     password: Yup.string().required('Password is required')
   });
+
+  const handleClose = () => {
+    setOpenSnack(false);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -48,10 +62,11 @@ export default function LoginForm() {
         }
         else{
           switch(res.status){
-            case 401 : console.log(res.msg);break;
-            case 500 : console.log(res.msg);break;
+            case 401 : setSnackMsg(res.msg);break;
+            case 500 : setSnackMsg(res.msg);break;
             default : console.log(res);
           }
+          setOpenSnack(true);
         }
       })
       .catch(err=>{
@@ -71,6 +86,13 @@ export default function LoginForm() {
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Stack spacing={3}>
+        <Snackbar
+          anchorOrigin={{ vertical, horizontal }}
+          open={openSnack}
+          onClose={handleClose}
+          message={snackMsg}
+          key={vertical + horizontal}
+        />
           <TextField
             fullWidth
             autoComplete="username"
