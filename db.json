@@ -17,33 +17,6 @@
       "confirmPassword": "shashank",
       "dob": "2021-12-16",
       "id": 2
-    },
-    {
-      "firstName": "shashank",
-      "lastName": "motruri",
-      "email": "ms@gmail.com",
-      "password": "shashank",
-      "confirmPassword": "shashank",
-      "dob": "2021-12-12",
-      "id": 3
-    },
-    {
-      "firstName": "shashank",
-      "lastName": "motruri",
-      "email": "motrurishashank000@gmail.com",
-      "password": "123456",
-      "confirmPassword": "123456",
-      "dob": "2021-12-31",
-      "id": 4
-    },
-    {
-      "firstName": "shashank",
-      "lastName": "motruri",
-      "email": "motrurishashank000@gmail.com",
-      "password": "shashank",
-      "confirmPassword": "shashank",
-      "dob": "2021-12-23",
-      "id": 5
     }
   ],
   "blogs": [
@@ -64,44 +37,28 @@
       "id": 2
     },
     {
-      "title": "test",
-      "cover": "/static/mock-images/covers/cover_12.jpg",
-      "avatarUrl": "/static/mock-images/avatars/avatar_2.jpg",
-      "popularity": 8,
-      "createdAt": "2021-12-14T18:55:25.956Z",
+      "title": "blog1",
+      "cover": "/static/mock-images/covers/cover_6.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_8.jpg",
+      "popularity": 9,
+      "createdAt": "2021-12-16T11:52:13.926Z",
       "id": 3
     },
     {
-      "title": "test1",
-      "cover": "/static/mock-images/covers/cover_6.jpg",
+      "title": "Chair is veru good and comfortable",
+      "cover": "/static/mock-images/covers/cover_21.jpg",
       "avatarUrl": "/static/mock-images/avatars/avatar_19.jpg",
-      "popularity": 7,
-      "createdAt": "2021-12-15T05:19:27.417Z",
+      "popularity": 9,
+      "createdAt": "2021-12-16T15:39:32.955Z",
       "id": 4
     },
     {
-      "title": "Test3",
-      "cover": "/static/mock-images/covers/cover_8.jpg",
-      "avatarUrl": "/static/mock-images/avatars/avatar_16.jpg",
-      "popularity": 2,
-      "createdAt": "2021-12-15T05:21:00.791Z",
+      "title": "Adding new blog",
+      "cover": "/static/mock-images/covers/cover_19.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_13.jpg",
+      "popularity": 4,
+      "createdAt": "2022-01-01T09:21:14.910Z",
       "id": 5
-    },
-    {
-      "title": "hello hi",
-      "cover": "/static/mock-images/covers/cover_4.jpg",
-      "avatarUrl": "/static/mock-images/avatars/avatar_9.jpg",
-      "popularity": 6,
-      "createdAt": "2021-12-15T05:27:46.753Z",
-      "id": 6
-    },
-    {
-      "title": "hiiiii",
-      "cover": "/static/mock-images/covers/cover_12.jpg",
-      "avatarUrl": "/static/mock-images/avatars/avatar_6.jpg",
-      "popularity": 7,
-      "createdAt": "2021-12-15T05:28:24.769Z",
-      "id": 7
     }
   ],
   "products": [
@@ -120,53 +77,18 @@
       "id": 2
     },
     {
-      "cover": "/static/mock-images/products/product_24.jpg",
-      "name": "Product 2",
+      "cover": "/static/mock-images/products/product_15.jpg",
+      "name": "test4",
       "price": "100",
-      "createdAt": "2021-12-16T07:20:44.145Z",
+      "createdAt": "2021-12-16T11:51:21.436Z",
       "id": 3
     },
     {
-      "cover": "/static/mock-images/products/product_12.jpg",
-      "name": "Product 4",
-      "price": "100",
-      "createdAt": "2021-12-16T07:21:39.354Z",
+      "cover": "/static/mock-images/products/product_19.jpg",
+      "name": "Chair",
+      "price": "50",
+      "createdAt": "2021-12-16T15:38:43.111Z",
       "id": 4
-    },
-    {
-      "cover": "/static/mock-images/products/product_21.jpg",
-      "name": "Test",
-      "price": "100",
-      "createdAt": "2021-12-16T07:42:04.984Z",
-      "id": 5
-    },
-    {
-      "cover": "/static/mock-images/products/product_9.jpg",
-      "name": "Hello",
-      "price": "44",
-      "createdAt": "2021-12-16T07:43:00.043Z",
-      "id": 6
-    },
-    {
-      "cover": "/static/mock-images/products/product_21.jpg",
-      "name": "A product",
-      "price": "2",
-      "createdAt": "2021-12-16T08:23:27.543Z",
-      "id": 7
-    },
-    {
-      "cover": "/static/mock-images/products/product_13.jpg",
-      "name": "Z product",
-      "price": "10",
-      "createdAt": "2021-12-16T08:23:40.039Z",
-      "id": 8
-    },
-    {
-      "cover": "/static/mock-images/products/product_9.jpg",
-      "name": "zzzzz",
-      "price": "5",
-      "createdAt": "2021-12-16T08:24:43.973Z",
-      "id": 9
     }
   ]
 }

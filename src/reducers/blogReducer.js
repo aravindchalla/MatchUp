@@ -27,21 +27,6 @@ function blogReducer(state = initialState, action) {
                 return b.popularity - a.popularity;
             });
             return [ ...action.payload]
-        case SEARCH_BY_TITLE :
-            const value = action.payload;
-            const filterdBlogs = action.state
-            console.log(filterdBlogs.length)
-/*             let data = action.state.map((blog,index) => {
-                if(blog.title.toLowerCase().indexOf(value.toLowerCase()) >= 0){
-                    return blog[index];
-                }
-            })
-
-            let filterdBlogs = data.filter((val) => {
-                if(val) return true;
-                return false;
-            }) */
-            return [ ...action.state , filterdBlogs]; 
         default:
             return state;
     }
