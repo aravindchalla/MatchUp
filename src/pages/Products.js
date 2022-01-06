@@ -5,7 +5,8 @@ import { Container, Stack, Typography } from '@material-ui/core';
 import Page from '../components/Page';
 import {
   ProductsPageinate,
-  ProductCard
+  ProductCard,
+  ProductCartWidget
 } from '../components/_dashboard/products';
 import { Grid ,Button} from '@material-ui/core';
 import { Icon } from '@iconify/react';
@@ -127,11 +128,21 @@ export default function EcommerceShop() {
     }, [search]);
 
     const SaveProduct = (e) => {
-      e.preventDefault();
       if(productTitle && productPrice){
         CreateProduct(productTitle, productPrice)
+        .then(() => {
+          GetProducts()
+          .then((res => {
+            console.log(res.data);
+            dispatch({
+              type: "FETCH_POST_REQUEST",
+              payload: res.data
+            })
+          }))
+        })
       }
       setOpenDailog(false);
+  
     }
 
     const postPerPage = 15;
@@ -254,6 +265,7 @@ export default function EcommerceShop() {
             }) 
           }
         </Grid>
+        <ProductCartWidget />
   {/*       {totalPosts > postPerPage && (
 						<ProductsPageinate
 							currentPage={currentPage}

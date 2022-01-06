@@ -1,13 +1,23 @@
 {
   "users": [
     {
+      "firstName": "Shashank",
+      "lastName": "Motruri",
+      "email": "motrurishashank000@gmail.com",
+      "password": "shashank",
+      "confirmPassword": "shashank",
+      "dob": "2021-12-16",
       "id": 1,
-      "firstName": "firstName",
-      "lastName": "lastName",
-      "email": "email",
-      "password": "password",
-      "confirmPassword": "confirmPassword",
-      "dob": "dob"
+      "CartProducts": [
+        {
+          "id": 1,
+          "cover": "/static/mock-images/products/product_1.jpg",
+          "name": "productname",
+          "price": 50,
+          "createdAt": "",
+          "quantity": "2"
+        }
+      ]
     },
     {
       "firstName": "Shashank",
@@ -16,7 +26,28 @@
       "password": "shashank",
       "confirmPassword": "shashank",
       "dob": "2021-12-16",
-      "id": 2
+      "id": 2,
+      "CartProducts": []
+    },
+    {
+      "firstName": "shashank",
+      "lastName": "shank",
+      "email": "shashank@gmail.com",
+      "password": "shashank",
+      "confirmPassword": "shashank",
+      "dob": "2022-01-17",
+      "id": 3,
+      "CartProducts": []
+    },
+    {
+      "firstName": "abcd",
+      "lastName": "efgh",
+      "email": "shashank@gmail.com",
+      "password": "shashank",
+      "confirmPassword": "shashank",
+      "dob": "2022-01-04",
+      "id": 4,
+      "CartProducts": []
     }
   ],
   "blogs": [
@@ -59,6 +90,14 @@
       "popularity": 4,
       "createdAt": "2022-01-01T09:21:14.910Z",
       "id": 5
+    },
+    {
+      "title": "Blog 4",
+      "cover": "/static/mock-images/covers/cover_12.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_4.jpg",
+      "popularity": 10,
+      "createdAt": "2022-01-03T04:49:37.259Z",
+      "id": 6
     }
   ],
   "products": [
@@ -89,6 +128,55 @@
       "price": "50",
       "createdAt": "2021-12-16T15:38:43.111Z",
       "id": 4
+    },
+    {
+      "cover": "/static/mock-images/products/product_5.jpg",
+      "name": "Bike",
+      "price": "100",
+      "createdAt": "2022-01-03T03:18:04.976Z",
+      "id": 5
+    },
+    {
+      "cover": "/static/mock-images/products/product_16.jpg",
+      "name": "car",
+      "price": "5000",
+      "createdAt": "2022-01-03T03:20:04.521Z",
+      "id": 6
+    },
+    {
+      "cover": "/static/mock-images/products/product_5.jpg",
+      "name": "phone",
+      "price": "50",
+      "createdAt": "2022-01-03T03:25:22.980Z",
+      "id": 7
+    },
+    {
+      "cover": "/static/mock-images/products/product_1.jpg",
+      "name": "shoes",
+      "price": "100",
+      "createdAt": "2022-01-03T03:29:05.582Z",
+      "id": 8
+    },
+    {
+      "cover": "/static/mock-images/products/product_15.jpg",
+      "name": "Product2",
+      "price": "80",
+      "createdAt": "2022-01-03T03:30:35.920Z",
+      "id": 9
+    },
+    {
+      "cover": "/static/mock-images/products/product_11.jpg",
+      "name": "Product 3",
+      "price": "50",
+      "createdAt": "2022-01-03T03:31:48.939Z",
+      "id": 10
+    },
+    {
+      "cover": "/static/mock-images/products/product_6.jpg",
+      "name": "Product 4",
+      "price": "60",
+      "createdAt": "2022-01-03T03:32:05.864Z",
+      "id": 11
     }
   ]
 }

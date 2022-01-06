@@ -5,5 +5,3 @@ export const GET_POST_REQUEST = 'GET_POST_REQUEST';
 
 export const SORT_POSTS_ASC = 'SORT_POSTS_ASC';
 export const SORT_POSTS_DESC = 'SORT_POSTS_DESC';
-
-export const SEARCH_POSTS = 'SEARCH_POSTS';

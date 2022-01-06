@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect} from 'react';
 import homeFill from '@iconify/icons-eva/home-fill';
 import personFill from '@iconify/icons-eva/person-fill';
 import settings2Fill from '@iconify/icons-eva/settings-2-fill';
@@ -12,6 +12,8 @@ import MenuPopover from '../../components/MenuPopover';
 //
 import account from '../../_mocks_/account';
 
+import { connect } from 'react-redux';
+import { getUser } from '../../redux/actions/userActions';
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
@@ -23,10 +25,10 @@ const MENU_OPTIONS = [
 ];
 
 // ----------------------------------------------------------------------
-
-export default function AccountPopover() {
+function AccountPopover(props) {
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const [user,setUser] = useState("");
 
   const handleOpen = () => {
     setOpen(true);
@@ -34,6 +36,10 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(false);
   };
+  useEffect(() => {
+    props.getUser();
+    console.log(props.user)
+  })
 
   const [redirectToLogin,setRedirectToLogin] = useState(false)
 
@@ -117,3 +123,17 @@ export default function AccountPopover() {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user : state.userReducer.user
+  } 
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    getUser : () => {dispatch(getUser())},
+  } 
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(AccountPopover);

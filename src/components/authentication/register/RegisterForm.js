@@ -4,15 +4,17 @@ import { Icon } from '@iconify/react';
 import { useFormik, Form, FormikProvider } from 'formik';
 import eyeFill from '@iconify/icons-eva/eye-fill';
 import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // material
 import { Stack, TextField, IconButton, InputAdornment } from '@material-ui/core';
 import { LoadingButton } from '@material-ui/lab';
 import {SignUp} from '../../../APIcalls/Auth'
 
+import { connect } from 'react-redux';
+import {postUser} from '../../../redux/actions/userActions';
 // ----------------------------------------------------------------------
 
-export default function RegisterForm() {
+function RegisterForm(props) {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -45,12 +47,14 @@ export default function RegisterForm() {
         "email": values.email,
         "password": values.password,
         "confirmPassword":values.confirmPassword,
-        "dob": values.dob
+        "dob": values.dob,
+        "CartProducts" : []
       }
       SignUp(user)
       .then((res) => {
         console.log(res);
         if(res.status === 200){
+          props.postUser(user);
           navigate('/dashboard/app', { replace: true });
         }
         else{
@@ -157,7 +161,6 @@ export default function RegisterForm() {
             size="large"
             type="submit"
             variant="contained"
-            loading={isSubmitting}
           >
             Register
           </LoadingButton>
@@ -166,3 +169,16 @@ export default function RegisterForm() {
     </FormikProvider>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    user : state.userReducer.user
+  } 
+}
+
+const mapDispatchToProps = (dispatch)=>{
+  return {
+    postUser : (user)=>{dispatch(postUser(user))}
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(RegisterForm);

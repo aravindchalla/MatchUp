@@ -65,10 +65,8 @@ function Blog(props) {
   
   const [blogTitle,setBlogTitle] = React.useState('');
   React.useEffect(() => {
-   console.log(serachValue)
     GetBlogs()
     .then((res => {
-      console.log(res.data);
       props.dispatch({
         type: "ADD_FETCHED_DATA",
         payload: res.data
@@ -89,18 +87,20 @@ function Blog(props) {
       );
     } else SetFilteredBlogs(AllBlogs);
 
-    console.log(filteredBlogs)
-
-  },[serachValue])
+  },[serachValue,AllBlogs,filteredBlogs])
 
   const SaveBlog = (e) => {
     e.preventDefault();
     if(blogTitle){
       CreateBlog(blogTitle)
       .then(() =>{
-        props.dispatch({
-          type : "GET_STATE",
-        })
+        GetBlogs()
+        .then((res => {
+          props.dispatch({
+            type: "ADD_FETCHED_DATA",
+            payload: res.data
+          })
+        }))
       })
     }
     setOpenDailog(false);
@@ -212,7 +212,7 @@ function Blog(props) {
         <Grid container spacing={3}>
           {
             filteredBlogs.length > 0 ? Object.keys(filteredBlogs).map(function(key, index) {
-             return <BlogPostCard cover={filteredBlogs[key].cover} title={filteredBlogs[key].title} view="" avatarUrl={filteredBlogs[key].avatarUrl} key={filteredBlogs[key].id} index={index} />
+             return <BlogPostCard id={filteredBlogs[key].id} cover={filteredBlogs[key].cover} title={filteredBlogs[key].title} view="" avatarUrl={filteredBlogs[key].avatarUrl} key={filteredBlogs[key].id} index={index} />
             }) : Object.keys(AllBlogs).map(function(key, index) {
               return <BlogPostCard cover={AllBlogs[key].cover} title={AllBlogs[key].title} view="" avatarUrl={AllBlogs[key].avatarUrl} key={AllBlogs[key].id} index={index} />
             }) 

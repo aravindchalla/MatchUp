@@ -1,33 +1,25 @@
-import * as actions from '../constants/productConstants';
+import * as actionTypes from '../constants/productConstants';
 
 const initialState = {
-	products: [],
-	searchResults: [],
+	products: []
 };
 
 const ProductReducers = (state = initialState, action) => {
 	switch (action.type) {
-		case actions.FETCH_POST_REQUEST:
-			return {
-				...action.payload,
-			};
-		case actions.GET_POST_REQUEST:
-			return {
-				...state,
-			};
-		case actions.SORT_POSTS_ASC:
+		case actionTypes.FETCH_POST_REQUEST : return action.payload;
+		case actionTypes.SORT_POSTS_ASC:
 			action.payload.sort(function(a, b){ return (a.name < b.name ? -1 : a.name > b.name ? 1 : 0)});
 			return [...action.payload]
-		case actions.SORT_POSTS_DESC:
+		case actionTypes.SORT_POSTS_DESC:
 			action.payload.sort(function(a, b) {return (a.name < b.name ? 1 : a.name > b.name ? -1 : 0)});
 			return [...action.payload]
-		case actions.SEARCH_POSTS:
+/* 		case actionTypes.SEARCH_POSTS:
 			return {
 				...state,
 				products: state.searchResults.filter((post) =>
 					post.name.toLowerCase().includes(action.payload.toLowerCase())
 				),
-			};
+			}; */
 		default:
 			return state;
 	}

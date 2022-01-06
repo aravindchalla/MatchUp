@@ -1,15 +1,18 @@
-import PropTypes from 'prop-types';
+import {useState} from 'react';
 import { Icon } from '@iconify/react';
-import eyeFill from '@iconify/icons-eva/eye-fill';
 import { Link as RouterLink } from 'react-router-dom';
-import shareFill from '@iconify/icons-eva/share-fill';
 import DeleteIcon from '@mui/icons-material/Delete';
 // material
 import { alpha, styled } from '@material-ui/core/styles';
-import { Box, Link, Card, Grid, Avatar, Typography, CardContent } from '@material-ui/core';
+import { Box, Link, Card, Grid, Avatar, CardContent , Button } from '@material-ui/core';
 
 import SvgIconStyle from '../../SvgIconStyle';
-
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 // ----------------------------------------------------------------------
 
 const CardMediaStyle = styled('div')({
@@ -53,16 +56,33 @@ const CoverImgStyle = styled('img')({
 // ----------------------------------------------------------------------
 
 export default function BlogPostCard(props) {
-  const { cover, title, view, avatarUrl, index } = props;
+  const { cover, title, view, avatarUrl, index , id} = props;
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;
 
+  const [showBlog,setShowBlog] = useState(false);
   const POST_INFO = [
     { number: view, icon: DeleteIcon },
   ];
 
+  const handleClose = () => {
+    setShowBlog(false);
+  };
+
   return (
     <Grid item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
+      <Dialog open={showBlog}>
+        <DialogTitle>{title}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Description...
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Close</Button>
+          <Button startIcon={<FavoriteIcon />}>Add to Favorites</Button>
+        </DialogActions>
+      </Dialog>
       <Card sx={{ position: 'relative' }}>
         <CardMediaStyle
           sx={{
@@ -136,6 +156,7 @@ export default function BlogPostCard(props) {
                 color: 'common.white'
               })
             }}
+            onClick={() => setShowBlog(true)}
           >
             {title}
           </TitleStyle>

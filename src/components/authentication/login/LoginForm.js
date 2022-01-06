@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { useState } from 'react';
-import { Link as RouterLink, Navigate, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik, Form, FormikProvider } from 'formik';
 import { Icon } from '@iconify/react';
 import eyeFill from '@iconify/icons-eva/eye-fill';
@@ -19,9 +19,12 @@ import { LoadingButton } from '@material-ui/lab';
 import {Signin} from '../../../APIcalls/Auth';
 import Snackbar from '@mui/material/Snackbar';
 
+
+import { connect } from 'react-redux';
+import {postUser} from '../../../redux/actions/userActions';
 // ----------------------------------------------------------------------
 
-export default function LoginForm() {
+function LoginForm(props) {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [openSnack ,setOpenSnack] = useState(false);
@@ -58,6 +61,7 @@ export default function LoginForm() {
       .then(res=>{
         console.log(res);
         if(res.status === 200){
+          props.postUser(res.user);
           navigate('/dashboard/app', { replace: true });
         }
         else{
@@ -147,3 +151,17 @@ export default function LoginForm() {
     </FormikProvider>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user : state.userReducer.user
+  } 
+}
+
+const mapDispatchToProps = (dispatch)=>{
+  return {
+    postUser : (user)=>{dispatch(postUser(user))}
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(LoginForm);

@@ -1,4 +1,4 @@
-import {ADD_FETCHED_DATA , GET_STATE ,SORT_BY_LATEST,SORT_BY_POPULARITY,SORT_BY_OLDEST,SEARCH_BY_TITLE} from '../constants/blogConstants'
+import {ADD_FETCHED_DATA  ,SORT_BY_LATEST,SORT_BY_POPULARITY,SORT_BY_OLDEST} from '../constants/blogConstants'
 
 const initialState = {
     blogs:[]
@@ -6,10 +6,7 @@ const initialState = {
   
 function blogReducer(state = initialState, action) {
     switch (action.type) {
-        case ADD_FETCHED_DATA:
-            return [ ...action.payload];
-        case GET_STATE:
-            return state;
+        case ADD_FETCHED_DATA : return action.payload;
         case SORT_BY_LATEST :
             action.payload.sort(function(a,b){
                 return new Date(b.createdAt) - new Date(a.createdAt);
@@ -32,4 +29,4 @@ function blogReducer(state = initialState, action) {
     }
 }
   
-  export default blogReducer
+export default blogReducer

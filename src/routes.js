@@ -9,6 +9,7 @@ import DashboardApp from './pages/DashboardApp';
 import Products from './pages/Products';
 import Blog from './pages/Blog';
 import NotFound from './pages/Page404';
+import Cart from './pages/Cart';
 // -------------------------------------------------3---------------------
 
 export default function Router() {
@@ -20,6 +21,7 @@ export default function Router() {
         { path: '', element:  <Navigate to="/dashboard/app" replace />},
         { path: 'app', element:  <DashboardApp />},
         { path: 'products', element: <Products />},
+        { path: 'cart', element: <Cart />},
         { path: 'blog', element: <Blog /> }
       ]
     },
