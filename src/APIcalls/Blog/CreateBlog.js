@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { mockImgCover } from '../../utils/mockImages';
 
-export default async function CreateBlog(blogtitle){
+export default async function CreateBlog(blogtitle,blogDescription){
     let today = new Date();
     const blog = {
         "title" : blogtitle,
+        "description" : blogDescription,
         "cover": mockImgCover(Math.floor(Math.random() * (24)  + 1)),
         "avatarUrl": `/static/mock-images/avatars/avatar_${Math.floor(Math.random() * (24) + 1)}.jpg`,
         "popularity" : Math.floor(Math.random() * (11)),

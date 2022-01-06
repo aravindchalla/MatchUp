@@ -9,7 +9,6 @@ import plusFill from '@iconify/icons-eva/plus-fill';
 import { Grid, Button, Container, Stack, Typography } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import InputLabel from '@mui/material/InputLabel';
@@ -64,6 +63,7 @@ function Blog(props) {
   const [filteredBlogs, SetFilteredBlogs] = React.useState(AllBlogs);
   
   const [blogTitle,setBlogTitle] = React.useState('');
+  const [blogDescription,setBlogDescription] = React.useState('');
   React.useEffect(() => {
     GetBlogs()
     .then((res => {
@@ -92,7 +92,7 @@ function Blog(props) {
   const SaveBlog = (e) => {
     e.preventDefault();
     if(blogTitle){
-      CreateBlog(blogTitle)
+      CreateBlog(blogTitle,blogDescription)
       .then(() =>{
         GetBlogs()
         .then((res => {
@@ -129,6 +129,7 @@ function Blog(props) {
       <Container>
       <Dialog open={openDailog}>
         <DialogTitle>Add Blog</DialogTitle>
+        <form onSubmit={(e) => SaveBlog(e)}>
         <DialogContent>
           <DialogContentText>
           Add Blogs where users can spend their free time reading about fresh arrivals, new products, trending sales etc...
@@ -140,14 +141,32 @@ function Blog(props) {
             label="Title"
             type="text"
             fullWidth
+            required
             variant="standard"
             onChange={(e) => setBlogTitle(e.target.value)}
           />
+          <TextField
+            multiline={true}
+            rows={10}
+            margin="dense"
+            required
+            id="required"
+            label="Description"
+            type="text"
+            fullWidth
+            variant="standard"
+            onChange={(e) => setBlogDescription(e.target.value)}
+            inputProps={{ minLength: 50 }}
+          />
+
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={(e) => SaveBlog(e)}>Save</Button>
-        </DialogActions>
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="submit">Save</Button>
+        </Stack>
+
+        </form>
+      
       </Dialog>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
@@ -212,9 +231,9 @@ function Blog(props) {
         <Grid container spacing={3}>
           {
             filteredBlogs.length > 0 ? Object.keys(filteredBlogs).map(function(key, index) {
-             return <BlogPostCard id={filteredBlogs[key].id} cover={filteredBlogs[key].cover} title={filteredBlogs[key].title} view="" avatarUrl={filteredBlogs[key].avatarUrl} key={filteredBlogs[key].id} index={index} />
+             return <BlogPostCard id={filteredBlogs[key].id} description={filteredBlogs[key].description} cover={filteredBlogs[key].cover} title={filteredBlogs[key].title} view="" avatarUrl={filteredBlogs[key].avatarUrl} key={filteredBlogs[key].id} index={index} />
             }) : Object.keys(AllBlogs).map(function(key, index) {
-              return <BlogPostCard cover={AllBlogs[key].cover} title={AllBlogs[key].title} view="" avatarUrl={AllBlogs[key].avatarUrl} key={AllBlogs[key].id} index={index} />
+              return <BlogPostCard cover={AllBlogs[key].cover} description={AllBlogs[key].description} title={AllBlogs[key].title} view="" avatarUrl={AllBlogs[key].avatarUrl} key={AllBlogs[key].id} index={index} />
             }) 
           }
         </Grid>

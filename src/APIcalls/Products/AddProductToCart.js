@@ -19,7 +19,6 @@ export default async function AddProductToCart(productId,quantity,userId){
             break ;
         }
     }
-    console.log(isProductAlreadyExists);
     if(isProductAlreadyExists){
         for(let i = 0; i < currUser.data.CartProducts.length; i++){
             if(currUser.data.CartProducts[i].id === productId){

@@ -56,7 +56,7 @@ const CoverImgStyle = styled('img')({
 // ----------------------------------------------------------------------
 
 export default function BlogPostCard(props) {
-  const { cover, title, view, avatarUrl, index , id} = props;
+  const { cover, title, view, avatarUrl, index , id , description} = props;
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;
 
@@ -75,7 +75,7 @@ export default function BlogPostCard(props) {
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Description...
+            {description}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

@@ -39,60 +39,13 @@
   ],
   "blogs": [
     {
-      "title": "hi",
-      "cover": "/static/mock-images/covers/cover_15.jpg",
-      "avatarUrl": "/static/mock-images/avatars/avatar_5.jpg",
-      "createdAt": "2021-12-14T18:54:59.632Z",
-      "popularity": 5,
-      "id": 1
-    },
-    {
-      "title": "hello",
-      "cover": "/static/mock-images/covers/cover_16.jpg",
-      "avatarUrl": "/static/mock-images/avatars/avatar_10.jpg",
+      "title": "Test1",
+      "description": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"",
+      "cover": "/static/mock-images/covers/cover_5.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_6.jpg",
       "popularity": 0,
-      "createdAt": "2021-12-14T18:55:12.698Z",
-      "id": 2
-    },
-    {
-      "title": "blog1",
-      "cover": "/static/mock-images/covers/cover_6.jpg",
-      "avatarUrl": "/static/mock-images/avatars/avatar_8.jpg",
-      "popularity": 9,
-      "createdAt": "2021-12-16T11:52:13.926Z",
-      "id": 3
-    },
-    {
-      "title": "Chair is veru good and comfortable",
-      "cover": "/static/mock-images/covers/cover_21.jpg",
-      "avatarUrl": "/static/mock-images/avatars/avatar_19.jpg",
-      "popularity": 9,
-      "createdAt": "2021-12-16T15:39:32.955Z",
-      "id": 4
-    },
-    {
-      "title": "Adding new blog",
-      "cover": "/static/mock-images/covers/cover_19.jpg",
-      "avatarUrl": "/static/mock-images/avatars/avatar_13.jpg",
-      "popularity": 4,
-      "createdAt": "2022-01-01T09:21:14.910Z",
-      "id": 5
-    },
-    {
-      "title": "Blog 4",
-      "cover": "/static/mock-images/covers/cover_12.jpg",
-      "avatarUrl": "/static/mock-images/avatars/avatar_4.jpg",
-      "popularity": 10,
-      "createdAt": "2022-01-03T04:49:37.259Z",
-      "id": 6
-    },
-    {
-      "title": "title",
-      "cover": "/static/mock-images/covers/cover_11.jpg",
-      "avatarUrl": "/static/mock-images/avatars/avatar_20.jpg",
-      "popularity": 9,
-      "createdAt": "2022-01-06T05:56:43.810Z",
-      "id": 7
+      "createdAt": "2022-01-06T17:56:25.415Z",
+      "id": 1
     }
   ],
   "products": [
