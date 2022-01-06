@@ -62,6 +62,15 @@ function LoginForm(props) {
         console.log(res);
         if(res.status === 200){
           props.postUser(res.user);
+          localStorage.setItem("userId", res.user.id);
+          console.log(res.user)
+          const curruser = {
+            "firstName": res.user.firstName,
+            "lastName": res.user.lastName,
+            "email": res.user.email,
+            "photoURL": res.user.photoURL,
+          }
+          localStorage.setItem("user", JSON.stringify(curruser));
           navigate('/dashboard/app', { replace: true });
         }
         else{

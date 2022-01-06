@@ -3,33 +3,39 @@ import axios from 'axios';
 export default async function AddProductToCart(productId,quantity,userId){
   
     let products = await axios.get("http://localhost:5000/products");
-    console.log(products.data)
     const currProduct = products.data.find(product => product.id === productId);
     
     const newProduct = {
         ...currProduct,
-        "quantity" : quantity
+        "quantity" : (quantity)
     }
-    let users = await axios.get("http://localhost:5000/users");
-    console.log(users.data)
-    const currUser = users.data.find(user => user.id === userId);
-    console.log(currUser);
-    console.log(currUser.CartProducts)
-    let isProductAlreadyExists = (currUser.CartProducts.forEach((product) => {
-        if(product.id === productId) return true;
-    }));
-    console.log(isProductAlreadyExists)
+    let currUser = await axios.get(`http://localhost:5000/users/${userId}`);
+    console.log(currUser)
+    let isProductAlreadyExists = false;
+    
+    for(let i = 0; i < currUser.data.CartProducts.length; i++){
+        if(currUser.data.CartProducts[i].id === productId){
+            isProductAlreadyExists = true;
+            break ;
+        }
+    }
+    console.log(isProductAlreadyExists);
     if(isProductAlreadyExists){
-        currUser.CartProducts.map(product => {
-            if(product.id === productId){
-                product.quantity += quantity;
-                return ;
+        for(let i = 0; i < currUser.data.CartProducts.length; i++){
+            if(currUser.data.CartProducts[i].id === productId){
+                currUser.data.CartProducts[i].quantity = parseInt( parseInt(currUser.data.CartProducts[i].quantity) + parseInt(quantity) );
+                console.log("Product already exists.Increasing Quantity")
+                break ;
             }
-        })
+        }
     }
     else{
-        currUser.CartProducts.push(newProduct);
+        currUser.data.CartProducts.push(newProduct);
+        console.log("Product not exists in cart. Adding Product to Cart");
+        console.log( currUser.data.CartProducts);
     }
+        
+    return await axios.put(`http://localhost:5000/users/${userId}`,currUser.data).then(response => {return response});
+ 
 
-    return await axios.put(`http://localhost:5000/users/${productId}`,currUser).then(response => console.log(response));
 }

@@ -10,6 +10,8 @@ import buyIcon from '@iconify/icons-icons8/buy';
 import { Button , TextField} from '@material-ui/core';
 import Dialog from '@mui/material/Dialog';
 import {AddProductToCart} from '../../../APIcalls/Products';
+import {connect} from 'react-redux';
+import {upadteCartItems} from '../../../redux/actions/cartActions';
 // ----------------------------------------------------------------------
 
 const ProductImgStyle = styled('img')({
@@ -30,7 +32,7 @@ const InputNumStyle = {
   "& input[type=number]::-webkit-inner-spin-button,& input[type=number]::-webkit-outer-spin-button" : {"opacity" : "1"}
 }
 
-export default function ShopProductCard({ product }) {
+function ShopProductCard({ product ,...props }) {
   const { name, cover, id, price} = product;
 
   const [showProduct,setShowProduct] = useState(false);
@@ -41,7 +43,15 @@ export default function ShopProductCard({ product }) {
 
   const AddToCart = (event,productId,quantity) => {
     event.preventDefault();
-    AddProductToCart(productId, quantity,2);
+    let userId = localStorage.getItem("userId") ? localStorage.getItem("userId") : 1;
+    AddProductToCart(productId, quantity,userId)
+    .then((result) => {
+      if(result){
+        console.log(result);
+        props.upadteCartItems(result.data);
+        console.log(props.cartItems);
+      }
+    })
   }
 
   return (
@@ -143,3 +153,17 @@ export default function ShopProductCard({ product }) {
     </Card>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    cartItems : state.cartReducer
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    upadteCartItems : (products) => {dispatch(upadteCartItems(products))}
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ShopProductCard);

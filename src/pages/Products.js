@@ -202,10 +202,10 @@ export default function EcommerceShop() {
           label="Sort"
         >
             <MenuItem key="ascending" value="Ascending">
-              Ascending
+              Sort by A to Z
               </MenuItem>
               <MenuItem key="descending" value="Descending">
-              Descending
+              Sort by Z to A
               </MenuItem>
         </Select>
       </FormControl>

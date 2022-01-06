@@ -48,6 +48,7 @@ function RegisterForm(props) {
         "password": values.password,
         "confirmPassword":values.confirmPassword,
         "dob": values.dob,
+        "photoURL" : `/static/mock-images/avatars/avatar_${Math.floor(Math.random() * (24) + 1)}.jpg`,
         "CartProducts" : []
       }
       SignUp(user)
@@ -55,6 +56,14 @@ function RegisterForm(props) {
         console.log(res);
         if(res.status === 200){
           props.postUser(user);
+          localStorage.setItem("userId", res.user.id);
+          const curruser = {
+            "firstName": res.user.firstName,
+            "lastName": res.user.lastName,
+            "email": res.user.email,
+            "photoURL": res.user.photoURL,
+          }
+          localStorage.setItem("user", JSON.stringify(curruser));
           navigate('/dashboard/app', { replace: true });
         }
         else{

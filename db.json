@@ -8,46 +8,33 @@
       "confirmPassword": "shashank",
       "dob": "2021-12-16",
       "id": 1,
+      "photoURL": "/static/mock-images/avatars/avatar_default.jpg",
       "CartProducts": [
+        {
+          "cover": "/static/mock-images/products/product_1.jpg",
+          "name": "Product 1",
+          "price": 55,
+          "createdAt": "2021-12-16T07:14:14.788Z",
+          "id": 2,
+          "quantity": 0
+        },
         {
           "id": 1,
           "cover": "/static/mock-images/products/product_1.jpg",
           "name": "productname",
           "price": 50,
           "createdAt": "",
-          "quantity": "2"
+          "quantity": 6
+        },
+        {
+          "cover": "/static/mock-images/products/product_15.jpg",
+          "name": "test4",
+          "price": "100",
+          "createdAt": "2021-12-16T11:51:21.436Z",
+          "id": 3,
+          "quantity": 6
         }
       ]
-    },
-    {
-      "firstName": "Shashank",
-      "lastName": "Motruri",
-      "email": "motrurishashank000@gmail.com",
-      "password": "shashank",
-      "confirmPassword": "shashank",
-      "dob": "2021-12-16",
-      "id": 2,
-      "CartProducts": []
-    },
-    {
-      "firstName": "shashank",
-      "lastName": "shank",
-      "email": "shashank@gmail.com",
-      "password": "shashank",
-      "confirmPassword": "shashank",
-      "dob": "2022-01-17",
-      "id": 3,
-      "CartProducts": []
-    },
-    {
-      "firstName": "abcd",
-      "lastName": "efgh",
-      "email": "shashank@gmail.com",
-      "password": "shashank",
-      "confirmPassword": "shashank",
-      "dob": "2022-01-04",
-      "id": 4,
-      "CartProducts": []
     }
   ],
   "blogs": [
@@ -98,6 +85,14 @@
       "popularity": 10,
       "createdAt": "2022-01-03T04:49:37.259Z",
       "id": 6
+    },
+    {
+      "title": "title",
+      "cover": "/static/mock-images/covers/cover_11.jpg",
+      "avatarUrl": "/static/mock-images/avatars/avatar_20.jpg",
+      "popularity": 9,
+      "createdAt": "2022-01-06T05:56:43.810Z",
+      "id": 7
     }
   ],
   "products": [

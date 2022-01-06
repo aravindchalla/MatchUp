@@ -1,16 +1,12 @@
 import { Icon } from '@iconify/react';
 import { useRef, useState, useEffect} from 'react';
 import homeFill from '@iconify/icons-eva/home-fill';
-import personFill from '@iconify/icons-eva/person-fill';
-import settings2Fill from '@iconify/icons-eva/settings-2-fill';
 import { Link as RouterLink, Navigate } from 'react-router-dom';
 // material
 import { alpha } from '@material-ui/core/styles';
 import { Button, Box, Divider, MenuItem, Typography, Avatar, IconButton } from '@material-ui/core';
 // components
 import MenuPopover from '../../components/MenuPopover';
-//
-import account from '../../_mocks_/account';
 
 import { connect } from 'react-redux';
 import { getUser } from '../../redux/actions/userActions';
@@ -28,7 +24,7 @@ const MENU_OPTIONS = [
 function AccountPopover(props) {
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
-  const [user,setUser] = useState("");
+  const [user,setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   const handleOpen = () => {
     setOpen(true);
@@ -71,7 +67,7 @@ function AccountPopover(props) {
           })
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        <Avatar src={user ? (user.photoURL ? user.photoURL :  "/static/mock-images/avatars/avatar_default.jpg") : "/static/mock-images/avatars/avatar_default.jpg"} alt="photoURL" />
       </IconButton>
 
       <MenuPopover
@@ -82,10 +78,10 @@ function AccountPopover(props) {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle1" noWrap>
-            {account.displayName}
+            {user?((user.firstName + ' ' + user.lastName) ? (user.firstName + ' ' + user.lastName) : "User"): "User"}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {user ? (user.email ? user.email : "user@gmail.com") : "user@gmail.com"}
           </Typography>
         </Box>
 
@@ -114,7 +110,7 @@ function AccountPopover(props) {
         ))}
 
         <Box sx={{ p: 2, pt: 1.5 }}>
-          <Button fullWidth color="inherit" variant="outlined" onClick={(e)=>{e.preventDefault();localStorage.removeItem("jwt");setRedirectToLogin(true)}}>
+          <Button fullWidth color="inherit" variant="outlined" onClick={(e)=>{e.preventDefault();localStorage.removeItem("userId");localStorage.removeItem("user");setRedirectToLogin(true)}}>
             Logout
           </Button>
         </Box>
