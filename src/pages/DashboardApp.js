@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 // material
-import { Box, Container, Typography } from '@material-ui/core';
+import { Box, Grid ,Stack ,Container, Typography } from '@material-ui/core';
 // components
 import Page from '../components/Page';
 import {connect} from "react-redux";
@@ -30,12 +30,20 @@ function DashboardApp({ product ,...props }) {
           <br /><br />
           
           <Typography variant="subtitle1" className={classes.wrapIcon}><AccessTimeFilledIcon style={{fill: "green"}}  className={classes.linkIcon}  fontSize="medium"/>&nbsp;&nbsp; Recent Products Viewed</Typography>
+        
         </Box>
-      </Container>
-        {props.dashboardProducts.length > 0 ? Object.keys(props.dashboardProducts).map((product) => {
-              return <DashboardCard product={product} />
-            }) :  <DashboardComponent /> 
+  
+        <Grid container spacing={3}>
+        {props.dashboardProducts.length > 0 ?
+        Object.keys(props.dashboardProducts).map(function(key, index) { 
+              return <Grid key={props.dashboardProducts[key].id} item xs={12} sm={6} md={3}>
+                  <DashboardCard product={props.dashboardProducts[key]} />
+                  </Grid>
+           } ) 
+           :  <DashboardComponent /> 
           }
+        </Grid>
+      </Container>
     </Page>
   );
 }

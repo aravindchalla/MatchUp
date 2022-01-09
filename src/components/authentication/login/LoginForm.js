@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
+import React ,{ useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useFormik, Form, FormikProvider } from 'formik';
 import { Icon } from '@iconify/react';
@@ -22,7 +22,13 @@ import Snackbar from '@mui/material/Snackbar';
 
 import { connect } from 'react-redux';
 import {postUser} from '../../../redux/actions/userActions';
+
+import MuiAlert from '@mui/material/Alert';
 // ----------------------------------------------------------------------
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function LoginForm(props) {
   const navigate = useNavigate();
@@ -35,6 +41,8 @@ function LoginForm(props) {
 
   const { vertical, horizontal } = state;
   const [snackMsg, setSnackMsg] = useState("");
+  const [severity,setSeverity] = useState("");
+  
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Email must be a valid email address').required('Email is required'),
     password: Yup.string().required('Password is required')
@@ -71,12 +79,13 @@ function LoginForm(props) {
             "photoURL": res.user.photoURL,
           }
           localStorage.setItem("user", JSON.stringify(curruser));
+          setSnackMsg(res.msg);setSeverity("success");
           navigate('/dashboard/app', { replace: true });
         }
         else{
           switch(res.status){
-            case 401 : setSnackMsg(res.msg);break;
-            case 500 : setSnackMsg(res.msg);break;
+            case 401 : {setSnackMsg(res.msg);setSeverity("error")};break;
+            case 500 : {setSnackMsg(res.msg);setSeverity("error")};break;
             default : console.log(res);
           }
           setOpenSnack(true);
@@ -103,9 +112,13 @@ function LoginForm(props) {
           anchorOrigin={{ vertical, horizontal }}
           open={openSnack}
           onClose={handleClose}
-          message={snackMsg}
+          autoHideDuration={4000}
           key={vertical + horizontal}
-        />
+        >
+           <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+              {snackMsg}
+            </Alert>
+        </Snackbar>
           <TextField
             fullWidth
             autoComplete="username"

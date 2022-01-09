@@ -1,5 +1,7 @@
 import axios from 'axios';
 
-export default async function GetBlogs(){
-    return await axios.get("http://localhost:5000/blogs");
+import {API_URL} from '../Backend_URL';
+
+export default async function GetBlogs(totalBlogs){
+    return await axios.get(`${API_URL}/blogs/?_start=0&_end=${parseInt(totalBlogs)}`);
 }

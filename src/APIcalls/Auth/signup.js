@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import {API_URL} from '../Backend_URL';
+
 async function GetUsers(){
-   const users = await axios.get('http://localhost:5000/users')
+   const users = await axios.get(`${API_URL}/users`)
     .then((result) => {return result.data})
     .catch((error) => {
         console.log(error);
@@ -21,18 +23,19 @@ const isuserExists = async (email) => {
             return isUser;
         }
     }
-    return isUser;
+    return false;
 }
 
 export default async function SignUp(user) {
     if(!user.email){
         return ({status: 401,msg : 'Please Enter all input fields!'});
     }
-/*     if(isuserExists(user.email)){
+    if(isuserExists(user.email) === true){
+        console.log("HI")
         return ({status: 401,msg : 'User already exists'});
-    } */
+    } 
     else{
-       return await axios.post('http://localhost:5000/users',user)
+       return await axios.post(`${API_URL}/users`,user)
         .then((response) => { 
             if(response.status === 200 || response.status ===201){
                 return ({status: 200,msg : 'User Sucessfully Signed Up',user: user});

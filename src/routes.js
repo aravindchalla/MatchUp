@@ -10,6 +10,7 @@ import Products from './pages/Products';
 import Blog from './pages/Blog';
 import NotFound from './pages/Page404';
 import Cart from './pages/Cart';
+import Favourites from './pages/Favourites';
 // -------------------------------------------------3---------------------
 
 export default function Router() {
@@ -23,6 +24,7 @@ export default function Router() {
         { path: 'products', element: <Products />},
         { path: 'products/:id', element: <Products />},
         { path: 'cart', element: <Cart />},
+        { path: 'favourites', element: <Favourites />},
         { path: 'blog', element: <Blog /> }
       ]
     },

@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import {useState} from 'react';
 import { Icon } from '@iconify/react';
 import { Link as RouterLink } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -14,16 +14,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-import {AddBlogToFavourite} from '../../../APIcalls/Blog';
+import {RemoveFavouriteBlog} from '../../../APIcalls/Blog';
 import axios from 'axios';
-
-import MuiAlert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
 // ----------------------------------------------------------------------
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 const CardMediaStyle = styled('div')({
   position: 'relative',
@@ -75,38 +68,17 @@ export default function BlogPostCard(props) {
     { number: view, icon: DeleteIcon },
   ];
 
-    const [openSnack ,setOpenSnack] = useState(false);
-  const [state, setState] = useState({
-    vertical: 'top',
-    horizontal: 'center',
-  });
-
-  const { vertical, horizontal } = state;
-  const [snackMsg, setSnackMsg] = useState("");
-  const [severity,setSeverity] = useState("");
-  
-  const handleAlertClose = () => {
-    setOpenSnack(false);
-  };
-
-
   const handleClose = () => {
     setShowBlog(false);
   };
+  
 
-  const handleFavouriteBlog = async (e,id) => {
+  const handleRemoveFavouriteItem = (e,id) => {
     e.preventDefault();
-    const currBlog = await axios.get(`http://localhost:5000/blogs/${id}`)
-    let userId = localStorage.getItem('userId') || 1
-    AddBlogToFavourite(currBlog.data,parseInt(userId))
+    let userId = localStorage.getItem('userId') || 1;
+    RemoveFavouriteBlog(id,userId)
     .then((res) => {
-      switch(res.status) {
-        case 200 : {setSnackMsg(res.msg);setSeverity("success")};break;
-        case 401 : {setSnackMsg(res.msg);setSeverity("warning")};break;
-        case 500 : {setSnackMsg(res.msg);setSeverity("error")};break;
-        default : {setSnackMsg(res.msg);setSeverity("error")};break;
-      }
-      setOpenSnack(true);
+      console.log(res);
     })
   }
 
@@ -121,20 +93,8 @@ export default function BlogPostCard(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>
-          <Button startIcon={<FavoriteIcon />} onClick={(e) => handleFavouriteBlog(e,id)}>Add to Favorites</Button>
         </DialogActions>
       </Dialog>
-      <Snackbar
-          anchorOrigin={{ vertical, horizontal }}
-          open={openSnack}
-          onClose={handleAlertClose}
-          autoHideDuration={4000}
-          key={vertical + horizontal}
-        >
-           <Alert onClose={handleAlertClose} severity={severity} sx={{ width: '100%' }}>
-              {snackMsg}
-            </Alert>
-        </Snackbar>
       <Card sx={{ position: 'relative' }}>
         <CardMediaStyle
           sx={{
@@ -231,6 +191,9 @@ export default function BlogPostCard(props) {
             ))}
           </InfoStyle>
         </CardContent>
+        
+        <Button sx={{width: "100%",height: "100%",borderTopLeftRadius : 0,borderTopRightRadius : 0}} type="button" color="error" variant="contained" onClick={(e) => handleRemoveFavouriteItem(e,id)}>Remove from Cart</Button>
+      
       </Card>
     </Grid>
   );

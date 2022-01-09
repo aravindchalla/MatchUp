@@ -53,36 +53,12 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 function Cart(props) {
 
-    const dispatch = useDispatch();
-
     const [search, setSearch] = useState('');
   
     const Products = useSelector((state) => state.cartReducer);
 
     
   const [filteredProducts, setFilteredProducts] = useState(Products);
-
-    const onSort = (e) => {
-      e.preventDefault();
-      var res = Object.keys(Products)
-      // iterate over them and generate the array
-      .map(function(k) {
-        // generate the array element 
-        return Products[k];
-      });
-      console.log(res);
-      switch(e.target.value) {
-        case "Ascending" : return dispatch({ 
-          type : "SORT_POSTS_ASC",
-          payload: res
-        })
-        case "Descending" : return dispatch({ 
-          type : "SORT_POSTS_DESC",
-          payload: res
-        }) 
-        default : break;
-      }
-    }
 
     useEffect(() => {
       GetCartProducts()
@@ -143,31 +119,8 @@ function Cart(props) {
                 />
           </RootStyle>
         <FormControl sx={{ m: 1, minWidth: 80 }}>
-        <InputLabel id="demo-simple-select-autowidth-label">Sort</InputLabel>
-        <Select
-          labelId="demo-simple-select-autowidth-label"
-          id="demo-simple-select-autowidth"
-          onChange={(e) => onSort(e)}
-          autoWidth
-          label="Sort"
-        >
-            <MenuItem key="ascending" value="Ascending">
-              Ascending
-              </MenuItem>
-              <MenuItem key="descending" value="Descending">
-              Descending
-              </MenuItem>
-        </Select>
       </FormControl>
 
-        </Stack>
-        <Stack
-          direction="row"
-          flexWrap="wrap-reverse"
-          alignItems="center"
-          justifyContent="flex-end"
-          sx={{ mb: 5 }}
-        >
         </Stack>
 
         <Grid container spacing={3}>
@@ -189,10 +142,4 @@ function Cart(props) {
   );
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    upadteCartItems : (products) => {dispatch(upadteCartItems(products))}
-  }
-}
-
-export default connect(mapDispatchToProps)(Cart)
+export default Cart;

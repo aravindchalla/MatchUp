@@ -12,6 +12,7 @@ import Dialog from '@mui/material/Dialog';
 import {AddProductToCart} from '../../../APIcalls/Products';
 import {connect} from 'react-redux';
 import {upadteCartItems} from '../../../redux/actions/cartActions';
+import {RemoveFromCart} from '../../../APIcalls/Products'
 // ----------------------------------------------------------------------
 
 const ProductImgStyle = styled('img')({
@@ -35,6 +36,17 @@ const InputNumStyle = {
 function ShopProductCard({ product ,...props }) {
   const { name, cover, id, price , quantity} = product;
 
+  const handleRemoveCartItem = (e,id) => {
+    e.preventDefault();
+    let userId = localStorage.getItem('userId') || 1;
+    RemoveFromCart(id,userId)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
@@ -76,6 +88,8 @@ function ShopProductCard({ product ,...props }) {
             </Typography>
           </Typography>
         </Stack>
+
+        <Button type="button" color="error" variant="contained" onClick={(e) => handleRemoveCartItem(e,id)}>Remove from Cart</Button>
       
       </Stack>
     </Card>

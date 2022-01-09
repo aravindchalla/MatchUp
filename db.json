@@ -10,12 +10,31 @@
       "photoURL": "/static/mock-images/avatars/avatar_13.jpg",
       "CartProducts": [
         {
+          "cover": "/static/mock-images/products/product_3.jpg",
+          "name": "Adidas Women's EQ22 Running Shoe",
+          "price": "100",
+          "createdAt": "2021-12-16T11:51:21.436Z",
+          "id": 3,
+          "quantity": 8
+        },
+        {
           "cover": "/static/mock-images/products/product_4.jpg",
-          "name": "name",
+          "name": "Nike Men's Multisport Outdoor",
           "price": "50",
-          "createdAt": "2022-01-07T06:28:29.700Z",
-          "id": 1,
-          "quantity": "2"
+          "createdAt": "2021-12-16T15:38:43.111Z",
+          "id": 4,
+          "quantity": 1
+        }
+      ],
+      "Favourites": [
+        {
+          "title": "About my new shoes",
+          "description": "Bought this new puma shoes for 400 INR. They are awesome. Must try.",
+          "cover": "/static/mock-images/covers/cover_2.jpeg",
+          "avatarUrl": "/static/mock-images/avatars/avatar_24.jpg",
+          "popularity": 1,
+          "createdAt": "2022-01-06T18:33:42.605Z",
+          "id": 2
         }
       ],
       "id": 1
@@ -231,13 +250,27 @@
       "price": 1000,
       "createdAt": "2022-01-19T07:72:05.867Z",
       "id": 30
+    },
+    {
+      "cover": "/static/mock-images/products/product_24.jpg",
+      "name": "Shoes",
+      "price": "10",
+      "createdAt": "2022-01-09T12:00:11.049Z",
+      "id": 31
+    },
+    {
+      "cover": "/static/mock-images/products/product_12.jpg",
+      "name": "bike",
+      "price": "1000",
+      "createdAt": "2022-01-09T12:02:03.955Z",
+      "id": 32
     }
   ],
   "blogs": [
     {
       "title": "New Recliner Sofa",
       "description": "I bought this new recliner sofa which was made using quality fabric and the cost of the sofa along with table is 95000 INR.\n\nHand made in India, they sell this sofa to all corners of India for free shipping. ",
-      "cover": "/static/mock-images/covers/cover_1.jpg",
+      "cover": "/static/mock-images/covers/cover_1.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_6.jpg",
       "popularity": 1,
       "createdAt": "2022-01-06T18:18:44.524Z",
@@ -246,7 +279,7 @@
     {
       "title": "About my new shoes",
       "description": "Bought this new puma shoes for 400 INR. They are awesome. Must try.",
-      "cover": "/static/mock-images/covers/cover_5.jpg",
+      "cover": "/static/mock-images/covers/cover_2.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_24.jpg",
       "popularity": 1,
       "createdAt": "2022-01-06T18:33:42.605Z",
@@ -255,7 +288,7 @@
     {
       "title": "About my iPhone",
       "description": "This iphone 11 i recently bought from matchup is quite awesome. Got it for 800 USD. It is the best  price, everyone should buy.",
-      "cover": "/static/mock-images/covers/cover_11.jpg",
+      "cover": "/static/mock-images/covers/cover_3.jpg",
       "avatarUrl": "/static/mock-images/avatars/avatar_11.jpg",
       "popularity": 1,
       "createdAt": "2022-01-06T18:37:10.899Z",
@@ -264,7 +297,7 @@
     {
       "title": "Bought this new bluetooth mouse",
       "description": "I bought this new bluetooth mouse by lenovo for 2000 INR. ",
-      "cover": "/static/mock-images/covers/cover_7.jpg",
+      "cover": "/static/mock-images/covers/cover_4.webp",
       "avatarUrl": "/static/mock-images/avatars/avatar_11.jpg",
       "popularity": 0,
       "createdAt": "2022-01-07T15:23:56.945Z",
@@ -273,7 +306,7 @@
     {
       "title": "Bought a new dress",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_16.jpg",
+      "cover": "/static/mock-images/covers/cover_5.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_6.jpg",
       "popularity": 7,
       "createdAt": "2022-01-07T15:25:09.693Z",
@@ -282,7 +315,7 @@
     {
       "title": "About my new tv",
       "description": "Cool tv by samsung which i got for only 60000 on offer. Happy to get it as such a low price.",
-      "cover": "/static/mock-images/covers/cover_8.jpg",
+      "cover": "/static/mock-images/covers/cover_6.webp",
       "avatarUrl": "/static/mock-images/avatars/avatar_17.jpg",
       "popularity": 9,
       "createdAt": "2022-01-07T15:27:39.411Z",
@@ -291,7 +324,7 @@
     {
       "title": "Bought this new sunglasses",
       "description": "Bought this new sunglasses for 200 rupees from Matchup really loving them\n",
-      "cover": "/static/mock-images/covers/cover_15.jpg",
+      "cover": "/static/mock-images/covers/cover_16.jpg",
       "avatarUrl": "/static/mock-images/avatars/avatar_2.jpg",
       "popularity": 1,
       "createdAt": "2022-01-07T15:28:58.266Z",
@@ -300,7 +333,7 @@
     {
       "title": "Sale about new dress",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_18.jpg",
+      "cover": "/static/mock-images/covers/cover_8.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_20.jpg",
       "popularity": 1,
       "createdAt": "2022-01-07T15:30:17.266Z",
@@ -309,7 +342,7 @@
     {
       "title": "New clothing",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_18.jpg",
+      "cover": "/static/mock-images/covers/cover_9.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_7.jpg",
       "popularity": 4,
       "createdAt": "2022-01-07T15:31:02.353Z",
@@ -318,7 +351,7 @@
     {
       "title": "Trending products",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_8.jpg",
+      "cover": "/static/mock-images/covers/cover_10.png",
       "avatarUrl": "/static/mock-images/avatars/avatar_7.jpg",
       "popularity": 5,
       "createdAt": "2022-01-07T15:31:52.478Z",
@@ -327,7 +360,7 @@
     {
       "title": "Trending Deals",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_16.jpg",
+      "cover": "/static/mock-images/covers/cover_11.png",
       "avatarUrl": "/static/mock-images/avatars/avatar_16.jpg",
       "popularity": 9,
       "createdAt": "2022-01-07T15:32:32.826Z",
@@ -336,7 +369,7 @@
     {
       "title": "Old products sale best prices",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_21.jpg",
+      "cover": "/static/mock-images/covers/cover_12.png",
       "avatarUrl": "/static/mock-images/avatars/avatar_17.jpg",
       "popularity": 2,
       "createdAt": "2022-01-07T15:33:13.269Z",
@@ -345,7 +378,7 @@
     {
       "title": "Best deals on old products",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_24.jpg",
+      "cover": "/static/mock-images/covers/cover_13.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_14.jpg",
       "popularity": 2,
       "createdAt": "2022-01-07T15:34:06.044Z",
@@ -354,7 +387,7 @@
     {
       "title": "Bought this keyboard",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_10.jpg",
+      "cover": "/static/mock-images/covers/cover_14.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_11.jpg",
       "popularity": 5,
       "createdAt": "2022-01-07T15:34:38.776Z",
@@ -363,7 +396,7 @@
     {
       "title": "Bought new sofa covers",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_5.jpg",
+      "cover": "/static/mock-images/covers/cover_15.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_4.jpg",
       "popularity": 9,
       "createdAt": "2022-01-07T15:35:18.206Z",
@@ -372,7 +405,7 @@
     {
       "title": "Bought new scooty",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_18.jpg",
+      "cover": "/static/mock-images/covers/cover_16.webp",
       "avatarUrl": "/static/mock-images/avatars/avatar_15.jpg",
       "popularity": 6,
       "createdAt": "2022-01-07T15:35:41.379Z",
@@ -381,7 +414,7 @@
     {
       "title": "Bought new washing machine",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_16.jpg",
+      "cover": "/static/mock-images/covers/cover_17.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_21.jpg",
       "popularity": 7,
       "createdAt": "2022-01-07T15:36:19.965Z",
@@ -390,7 +423,7 @@
     {
       "title": "Water bottles sale",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_24.jpg",
+      "cover": "/static/mock-images/covers/cover_18.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_8.jpg",
       "popularity": 8,
       "createdAt": "2022-01-07T15:36:51.128Z",
@@ -399,7 +432,7 @@
     {
       "title": "Bought new perfume",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_15.jpg",
+      "cover": "/static/mock-images/covers/cover_19.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_19.jpg",
       "popularity": 7,
       "createdAt": "2022-01-07T15:37:18.984Z",
@@ -408,7 +441,7 @@
     {
       "title": "New mattress with cot",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_19.jpg",
+      "cover": "/static/mock-images/covers/cover_20.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_20.jpg",
       "popularity": 5,
       "createdAt": "2022-01-07T15:38:03.316Z",
@@ -417,7 +450,7 @@
     {
       "title": "Awesome Photoframe",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_16.jpg",
+      "cover": "/static/mock-images/covers/cover_21.jpg",
       "avatarUrl": "/static/mock-images/avatars/avatar_19.jpg",
       "popularity": 1,
       "createdAt": "2022-01-07T15:38:31.990Z",
@@ -426,7 +459,7 @@
     {
       "title": "New show item",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_21.jpg",
+      "cover": "/static/mock-images/covers/cover_22.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_24.jpg",
       "popularity": 1,
       "createdAt": "2022-01-07T15:39:01.192Z",
@@ -435,7 +468,7 @@
     {
       "title": "New dining table",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_13.jpg",
+      "cover": "/static/mock-images/covers/cover_23.jpg",
       "avatarUrl": "/static/mock-images/avatars/avatar_14.jpg",
       "popularity": 4,
       "createdAt": "2022-01-07T15:39:45.634Z",
@@ -444,7 +477,7 @@
     {
       "title": "New goggles",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_4.jpg",
+      "cover": "/static/mock-images/covers/cover_16.jpg",
       "avatarUrl": "/static/mock-images/avatars/avatar_4.jpg",
       "popularity": 6,
       "createdAt": "2022-01-07T15:40:21.804Z",
@@ -453,7 +486,7 @@
     {
       "title": "New teapoy",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_20.jpg",
+      "cover": "/static/mock-images/covers/cover_25.jpg",
       "avatarUrl": "/static/mock-images/avatars/avatar_2.jpg",
       "popularity": 4,
       "createdAt": "2022-01-07T15:40:47.347Z",
@@ -462,7 +495,7 @@
     {
       "title": "New wall clock",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_4.jpg",
+      "cover": "/static/mock-images/covers/cover_26.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_16.jpg",
       "popularity": 5,
       "createdAt": "2022-01-07T15:41:14.901Z",
@@ -471,7 +504,7 @@
     {
       "title": "New dresses",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.\nI bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.\nI bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.\nI bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.\nI bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.\nI bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.\nI bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.\nI bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.\nI bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.\nI bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.\nI bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.\nI bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_21.jpg",
+      "cover": "/static/mock-images/covers/cover_27.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_1.jpg",
       "popularity": 9,
       "createdAt": "2022-01-07T15:41:56.777Z",
@@ -480,7 +513,7 @@
     {
       "title": "New air freshener",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_13.jpg",
+      "cover": "/static/mock-images/covers/cover_28.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_7.jpg",
       "popularity": 7,
       "createdAt": "2022-01-07T15:43:17.344Z",
@@ -489,7 +522,7 @@
     {
       "title": "New fabric mat",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_16.jpg",
+      "cover": "/static/mock-images/covers/cover_29.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_11.jpg",
       "popularity": 9,
       "createdAt": "2022-01-07T15:43:29.824Z",
@@ -498,7 +531,7 @@
     {
       "title": "box of chocolates",
       "description": "I bought this new dress which was made using quality fabric and the cost of the dress is 5000 INR. Made in India, they sell this to all corners of India for free shipping.",
-      "cover": "/static/mock-images/covers/cover_10.jpg",
+      "cover": "/static/mock-images/covers/cover_30.jpeg",
       "avatarUrl": "/static/mock-images/avatars/avatar_24.jpg",
       "popularity": 10,
       "createdAt": "2022-01-07T15:43:49.620Z",

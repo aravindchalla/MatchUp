@@ -1,4 +1,4 @@
-import { useState , useEffect} from 'react';
+import React ,{ useState , useEffect} from 'react';
 // material
 import { Container, Stack, Typography } from '@material-ui/core';
 // components
@@ -30,6 +30,14 @@ import Select from '@mui/material/Select';
 import { Box, InputAdornment } from '@material-ui/core';
 import Pagination from '@mui/material/Pagination';
 import { styled } from '@material-ui/core/styles';
+
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+// ----------------------------------------------------------------------
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const RootStyle = styled('div')(({ theme }) => ({
   '& .MuiAutocomplete-root': {
@@ -78,6 +86,20 @@ export default function EcommerceShop() {
 
     
   const [filteredProducts, setFilteredProducts] = useState(Products);
+
+  const [openSnack ,setOpenSnack] = useState(false);
+  const [state, setState] = useState({
+    vertical: 'top',
+    horizontal: 'center',
+  });
+
+  const { vertical, horizontal } = state;
+  const [snackMsg, setSnackMsg] = useState("");
+  const [severity,setSeverity] = useState("");
+  
+  const handleAlertClose = () => {
+    setOpenSnack(false);
+  };
 
     const onSort = (e) => {
       e.preventDefault();
@@ -144,11 +166,20 @@ export default function EcommerceShop() {
         .then(() => {
           GetProducts()
           .then((res => {
+            if(res){
             console.log(res.data);
             dispatch({
               type: "FETCH_POST_REQUEST",
               payload: res.data
             })
+            switch(res.status){
+              case 200 : {setSnackMsg("Successfully created product");setSeverity("success");};break;
+              case 401 : {setSnackMsg("Error creating product");setSeverity("warning")};break;
+              case 500 : {setSnackMsg("Internal Server Error");setSeverity("error")};break;
+              default : {setSnackMsg("Internal Server Error");setSeverity("error")};break;
+            }
+            setOpenSnack(true);
+            } 
           }))
         })
       }
@@ -158,12 +189,24 @@ export default function EcommerceShop() {
 
     const handlePageChange = (event, value) => {
       event.preventDefault();
+      setcurrPage(value);
       window.location.href = `/dashboard/products/${value}`
     };
 
   return (
     <Page title="Products">
       <Container>
+      <Snackbar
+          anchorOrigin={{ vertical, horizontal }}
+          open={openSnack}
+          onClose={handleAlertClose}
+          autoHideDuration={4000}
+          key={vertical + horizontal}
+        >
+           <Alert onClose={handleAlertClose} severity={severity} sx={{ width: '100%' }}>
+              {snackMsg}
+            </Alert>
+        </Snackbar>
         <Typography variant="h4" sx={{ mb: 5 }}>
           Products
         </Typography>
@@ -282,7 +325,7 @@ export default function EcommerceShop() {
           alignItems="center"
           justify="center"
         >
-          <Pagination size="large" color="primary" count={totalPages} onChange={handlePageChange} />
+          <Pagination size="large" page={parseInt(currPage)} color="primary" count={totalPages} onChange={handlePageChange} />
         </Grid>
       </Container>
     </Page>

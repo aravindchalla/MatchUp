@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { useState } from 'react';
+import React , { useState } from 'react';
 import { Icon } from '@iconify/react';
 import { useFormik, Form, FormikProvider } from 'formik';
 import eyeFill from '@iconify/icons-eva/eye-fill';
@@ -12,12 +12,36 @@ import {SignUp} from '../../../APIcalls/Auth'
 
 import { connect } from 'react-redux';
 import {postUser} from '../../../redux/actions/userActions';
+
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 // ----------------------------------------------------------------------
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 function RegisterForm(props) {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const [openSnack ,setOpenSnack] = useState(false);
+  const [snackMsg, setSnackMsg] = useState("");
+  const [severity,setSeverity] = useState("");
+
+  const handleClose = () => {
+    setOpenSnack(false);
+  };
+  
+
+  const [state, setState] = useState({
+    vertical: 'top',
+    horizontal: 'center',
+  });
+
+  const { vertical, horizontal } = state;
+
+
   const RegisterSchema = Yup.object().shape({
     firstName: Yup.string()
       .min(2, 'Too Short!')
@@ -49,7 +73,8 @@ function RegisterForm(props) {
         "confirmPassword":values.confirmPassword,
         "dob": values.dob,
         "photoURL" : `/static/mock-images/avatars/avatar_${Math.floor(Math.random() * (24) + 1)}.jpg`,
-        "CartProducts" : []
+        "CartProducts" : [],
+        "Favourites" : [],
       }
       SignUp(user)
       .then((res) => {
@@ -64,14 +89,17 @@ function RegisterForm(props) {
             "photoURL": res.user.photoURL,
           }
           localStorage.setItem("user", JSON.stringify(curruser));
+          setSnackMsg(res.msg);setSeverity("success");
           navigate('/dashboard/app', { replace: true });
         }
         else{
+          console.log(res)
           switch(res.status){
-            case 401 : {console.log(res.msg)};break;
-            case 500 : console.log(res.msg);break;
+            case 401 : {setSnackMsg(res.msg);setSeverity("error")};break;
+            case 500 : {setSnackMsg(res.msg);setSeverity("error")};break;
             default : console.log(res);
           }
+          setOpenSnack(true);
         }
         actions.setSubmitting(false);
       })
@@ -88,6 +116,17 @@ function RegisterForm(props) {
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Stack spacing={3}>
+        <Snackbar
+          anchorOrigin={{ vertical, horizontal }}
+          open={openSnack}
+          onClose={handleClose}
+          autoHideDuration={4000}
+          key={vertical + horizontal}
+        >
+           <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+              {snackMsg}
+            </Alert>
+        </Snackbar>
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
             <TextField
               fullWidth

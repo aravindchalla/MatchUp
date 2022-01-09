@@ -1,7 +1,8 @@
 import axios from 'axios';
+import {API_URL} from '../Backend_URL';
 
 async function GetUsers(){
-    const users = await axios.get('http://localhost:5000/users')
+    const users = await axios.get(`${API_URL}/users`)
      .then((result) => {return result.data})
      .catch((error) => {
          console.log(error);
@@ -29,7 +30,7 @@ export default async function Signin(user){
     }
   
     if(!isuserExists(user.email)){
-        return ({status: 401,msg : 'User does not exist.Please Sign Up!'}); 
+        return ({status: 401,msg : 'User does not exist. Please Sign Up!'}); 
     }
     const users = await GetUsers();
 
@@ -38,5 +39,5 @@ export default async function Signin(user){
             return ({status: 200,msg : 'User Sucessfully Signed In',user : users[i]});
         }
     }
-    return ({status: 401,msg : 'User does not exist.Please Sign Up'}); 
+    return ({status: 401,msg : 'User does not exist. Please Sign Up!'}); 
 }

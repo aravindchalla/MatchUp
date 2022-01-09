@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { mockImgCover } from '../../utils/mockImages';
 
+import {API_URL} from '../Backend_URL';
+
 export default async function CreateBlog(blogtitle,blogDescription){
     let today = new Date();
     const blog = {
@@ -12,7 +14,7 @@ export default async function CreateBlog(blogtitle,blogDescription){
         "createdAt" : today,
     }
     if(blogtitle) {
-        return await axios.post("http://localhost:5000/blogs",blog)
+        return await axios.post(`${API_URL}/blogs`,blog)
     }
     return null;
 }

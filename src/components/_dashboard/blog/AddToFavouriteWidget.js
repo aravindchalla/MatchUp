@@ -1,12 +1,12 @@
 import {useState,useEffect} from 'react';
 import { Icon } from '@iconify/react';
-import shoppingCartFill from '@iconify/icons-eva/shopping-cart-fill';
+import heartFilled from '@iconify/icons-ant-design/heart-filled';
 // material
 import { styled } from '@material-ui/core/styles';
 import { Badge } from '@material-ui/core';
 import {connect} from 'react-redux';
 import {getCartItems,upadteCartItems} from '../../../redux/actions/cartActions';
-import {GetCartProducts} from '../../../APIcalls/Products';
+import {GetFavouriteBlogs} from '../../../APIcalls/Blog';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -32,41 +32,23 @@ const RootStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-function CartWidget(props) {
+function FavouriteWidget(props) {
   const [cartNumber ,setCartNumber] = useState(0);
   useEffect(() => {
     let userId = localStorage.getItem('userId') ? parseInt(localStorage.getItem('userId')) : 1; 
-    GetCartProducts(userId)
-    .then((user) => {
-     
-      props.upadteCartItems(user.CartProducts);
-      let number = 0;
-      for(let i = 0; i < user.CartProducts.length;i++){
-        number += parseInt(user.CartProducts[i].quantity);
-      }
-      setCartNumber(number);
+    GetFavouriteBlogs(userId)
+    .then((res) => {
+      setCartNumber(res.data.Favourites.length);
     })
   
   })
   return (
     <RootStyle>
-      <Badge onClick={() =>  window.location.href = "http://localhost:3000/dashboard/cart"} showZero badgeContent={cartNumber} color="error" max={99}>
-        <Icon icon={shoppingCartFill} width={24} height={24} />
+      <Badge onClick={() =>  window.location.href = "http://localhost:3000/dashboard/favourites"} showZero badgeContent={cartNumber} color="error" max={99}>
+        <Icon icon={heartFilled} width={24} height={24} />
       </Badge>
     </RootStyle>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    cartItems : state.cartReducer
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getCartItems : () => {dispatch(getCartItems())},
-    upadteCartItems : (products) => {dispatch(upadteCartItems(products))}
-  }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(CartWidget);
+export default FavouriteWidget;

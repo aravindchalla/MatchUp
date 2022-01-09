@@ -17,6 +17,7 @@ const ProductImgStyle = styled('img')({
 
 export default function DashboardCard({product,...props}){
     const { name, cover, id, price} = product;
+    console.log(product);
     return (
       <Card>
      <Box sx={{ pt: '100%', position: 'relative' }}>
@@ -43,13 +44,6 @@ export default function DashboardCard({product,...props}){
            </Typography>
          </Typography>
          <Stack alignItems="right" justifyContent="space-between">
-         <Button
-           type="button"
-           variant="outlined"
-           startIcon={<Icon icon={buyIcon} />}
-         >
-           Buy
-         </Button>
          </Stack>
        </Stack>
      

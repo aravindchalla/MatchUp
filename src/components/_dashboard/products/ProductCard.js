@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 // material
@@ -13,7 +13,13 @@ import {AddProductToCart} from '../../../APIcalls/Products';
 import {connect} from 'react-redux';
 import {upadteCartItems} from '../../../redux/actions/cartActions';
 import {addItem} from '../../../redux/actions/dashboard';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 // ----------------------------------------------------------------------
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const ProductImgStyle = styled('img')({
   top: 0,
@@ -37,20 +43,41 @@ function ShopProductCard({ product ,...props }) {
   const { name, cover, id, price} = product;
 
   const [showProduct,setShowProduct] = useState(false);
-  const [quantity,setQuantity] = useState(0);
+  const [quantity,setQuantity] = useState(1);
   const handleClose = () => {
     setShowProduct(false);
   };
+
+  const [openSnack ,setOpenSnack] = useState(false);
+  const [state, setState] = useState({
+    vertical: 'top',
+    horizontal: 'center',
+  });
+
+  const { vertical, horizontal } = state;
+  const [snackMsg, setSnackMsg] = useState("");
+  const [severity,setSeverity] = useState("");
+  
+  const handleAlertClose = () => {
+    setOpenSnack(false);
+  };
+
 
   const AddToCart = (event,productId,quantity) => {
     event.preventDefault();
     let userId = localStorage.getItem("userId") ? localStorage.getItem("userId") : 1;
     AddProductToCart(productId, quantity,userId)
-    .then((result) => {
-      if(result){
-        console.log(result);
-        props.upadteCartItems(result.data);
-        console.log(props.cartItems);
+    .then((res) => {
+      if(res){
+        console.log(res);
+        props.upadteCartItems(res.data);
+        switch(res.status) {
+          case 200 : {setSnackMsg("Successfully added to cart");setSeverity("success");};break;
+          case 401 : {setSnackMsg("Error adding to cart");setSeverity("warning")};break;
+          case 500 : {setSnackMsg("Internal Server Error");setSeverity("error")};break;
+          default : {setSnackMsg("Internal Server Error");setSeverity("error")};break;
+        }
+        setOpenSnack(true);
       }
     })
   }
@@ -58,6 +85,17 @@ function ShopProductCard({ product ,...props }) {
   return (
     <Card>
        <Dialog open={showProduct} maxWidth="xs" fullWidth={true}>
+       <Snackbar
+          anchorOrigin={{ vertical, horizontal }}
+          open={openSnack}
+          onClose={handleAlertClose}
+          autoHideDuration={4000}
+          key={vertical + horizontal}
+        >
+           <Alert onClose={handleAlertClose} severity={severity} sx={{ width: '100%' }}>
+              {snackMsg}
+            </Alert>
+        </Snackbar>
        <Box sx={{ pt: '100%', position: 'relative' }}>
         <ProductImgStyle alt={name} src={cover} />
       </Box>
@@ -115,6 +153,7 @@ function ShopProductCard({ product ,...props }) {
       </Stack>
        
       </Dialog>
+    
       <Box sx={{ pt: '100%', position: 'relative' }}>
         <ProductImgStyle alt={name} src={cover} />
       </Box>

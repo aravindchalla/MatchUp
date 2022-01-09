@@ -1,15 +1,16 @@
 import axios from 'axios';
+import {API_URL} from '../Backend_URL';
 
 export default async function AddProductToCart(productId,quantity,userId){
   
-    let products = await axios.get("http://localhost:5000/products");
+    let products = await axios.get(`${API_URL}/products`);
     const currProduct = products.data.find(product => product.id === productId);
     
     const newProduct = {
         ...currProduct,
         "quantity" : (quantity)
     }
-    let currUser = await axios.get(`http://localhost:5000/users/${userId}`);
+    let currUser = await axios.get(`${API_URL}/users/${userId}`);
     console.log(currUser)
     let isProductAlreadyExists = false;
     
@@ -34,7 +35,5 @@ export default async function AddProductToCart(productId,quantity,userId){
         console.log( currUser.data.CartProducts);
     }
         
-    return await axios.put(`http://localhost:5000/users/${userId}`,currUser.data).then(response => {return response});
- 
-
+    return await axios.put(`${API_URL}/users/${userId}`,currUser.data).then(response => {return response});
 }
