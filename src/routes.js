@@ -21,6 +21,7 @@ export default function Router() {
         { path: '', element:  <Navigate to="/dashboard/app" replace />},
         { path: 'app', element:  <DashboardApp />},
         { path: 'products', element: <Products />},
+        { path: 'products/:id', element: <Products />},
         { path: 'cart', element: <Cart />},
         { path: 'blog', element: <Blog /> }
       ]

@@ -35,7 +35,7 @@ export default async function SignUp(user) {
        return await axios.post('http://localhost:5000/users',user)
         .then((response) => { 
             if(response.status === 200 || response.status ===201){
-                return ({status: 200,msg : 'User Sucessfully Signed Up'});
+                return ({status: 200,msg : 'User Sucessfully Signed Up',user: user});
             }
             return ({status: 500,msg : 'Internal Server Error'});
         })

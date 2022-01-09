@@ -2,9 +2,9 @@ import { useState , useEffect} from 'react';
 // material
 import { Container, Stack, Typography } from '@material-ui/core';
 // components
+import {useNavigate} from 'react-router-dom';
 import Page from '../components/Page';
 import {
-  ProductsPageinate,
   ProductCard,
   ProductCartWidget
 } from '../components/_dashboard/products';
@@ -19,7 +19,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import {GetProducts,CreateProduct} from '../APIcalls/Products'
+import {GetProducts,CreateProduct,GetAllProducts} from '../APIcalls/Products'
 
 import searchFill from '@iconify/icons-eva/search-fill';
 import InputLabel from '@mui/material/InputLabel';
@@ -28,8 +28,9 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import { Box, InputAdornment } from '@material-ui/core';
-
+import Pagination from '@mui/material/Pagination';
 import { styled } from '@material-ui/core/styles';
+
 const RootStyle = styled('div')(({ theme }) => ({
   '& .MuiAutocomplete-root': {
     width: 200,
@@ -67,11 +68,13 @@ export default function EcommerceShop() {
     setOpenDailog(false);
   };
     const dispatch = useDispatch();
-    const [currentPage, setCurrentPage] = useState(1);
 
     const [search, setSearch] = useState('');
   
     const Products = useSelector((state) => state.productsReducer);
+
+    const [currPage ,setcurrPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
 
     
   const [filteredProducts, setFilteredProducts] = useState(Products);
@@ -99,7 +102,15 @@ export default function EcommerceShop() {
     }
 
     useEffect(() => {
-      GetProducts()
+      let pageId = window.location.pathname.split("/")[3];
+      setcurrPage(pageId);
+
+      GetAllProducts()
+      .then(res => {
+        setTotalPages(Math.ceil(res.data.length/12));
+      })
+
+      GetProducts(pageId)
       .then((res => {
         console.log(res.data);
         dispatch({
@@ -145,12 +156,10 @@ export default function EcommerceShop() {
   
     }
 
-    const postPerPage = 15;
-    const totalPosts = 5;
-
-    const indexOfLastPost = currentPage * postPerPage;
-    const indexOfFirstPost = indexOfLastPost - postPerPage;
-   // const filterPosts = Products.slice(indexOfFirstPost, indexOfLastPost);
+    const handlePageChange = (event, value) => {
+      event.preventDefault();
+      window.location.href = `/dashboard/products/${value}`
+    };
 
   return (
     <Page title="Products">
@@ -228,7 +237,6 @@ export default function EcommerceShop() {
             onChange={(e) => setProductTitle(e.target.value)}
           />
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Price"
@@ -266,14 +274,16 @@ export default function EcommerceShop() {
           }
         </Grid>
         <ProductCartWidget />
-  {/*       {totalPosts > postPerPage && (
-						<ProductsPageinate
-							currentPage={currentPage}
-							setCurrentPage={setCurrentPage}
-							totalPosts={totalPosts}
-							postPerPage={postPerPage}
-						/>
-					)} */}
+        <br /><br /> <br /><br />
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
+        >
+          <Pagination size="large" color="primary" count={totalPages} onChange={handlePageChange} />
+        </Grid>
       </Container>
     </Page>
   );

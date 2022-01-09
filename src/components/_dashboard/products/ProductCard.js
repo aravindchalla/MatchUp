@@ -12,6 +12,7 @@ import Dialog from '@mui/material/Dialog';
 import {AddProductToCart} from '../../../APIcalls/Products';
 import {connect} from 'react-redux';
 import {upadteCartItems} from '../../../redux/actions/cartActions';
+import {addItem} from '../../../redux/actions/dashboard';
 // ----------------------------------------------------------------------
 
 const ProductImgStyle = styled('img')({
@@ -142,7 +143,7 @@ function ShopProductCard({ product ,...props }) {
             type="button"
             variant="outlined"
             startIcon={<Icon icon={buyIcon} />}
-            onClick={() => setShowProduct(true)}
+            onClick={() => {console.log(product);props.addItem(product);setShowProduct(true);}}
           >
             Buy
           </Button>
@@ -156,13 +157,15 @@ function ShopProductCard({ product ,...props }) {
 
 const mapStateToProps = (state) => {
   return {
-    cartItems : state.cartReducer
+    cartItems : state.cartReducer,
+    dashboardProducts : state.dashboardReducer
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    upadteCartItems : (products) => {dispatch(upadteCartItems(products))}
+    upadteCartItems : (products) => {dispatch(upadteCartItems(products))},
+    addItem : (product) => {dispatch(addItem(product))}
   }
 }
 
