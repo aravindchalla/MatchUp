@@ -8,24 +8,7 @@
       "confirmPassword": "shashank",
       "dob": "2022-01-13",
       "photoURL": "/static/mock-images/avatars/avatar_13.jpg",
-      "CartProducts": [
-        {
-          "cover": "/static/mock-images/products/product_3.jpg",
-          "name": "Adidas Women's EQ22 Running Shoe",
-          "price": "100",
-          "createdAt": "2021-12-16T11:51:21.436Z",
-          "id": 3,
-          "quantity": 8
-        },
-        {
-          "cover": "/static/mock-images/products/product_4.jpg",
-          "name": "Nike Men's Multisport Outdoor",
-          "price": "50",
-          "createdAt": "2021-12-16T15:38:43.111Z",
-          "id": 4,
-          "quantity": 1
-        }
-      ],
+      "CartProducts": [],
       "Favourites": [
         {
           "title": "About my new shoes",
@@ -38,6 +21,18 @@
         }
       ],
       "id": 1
+    },
+    {
+      "firstName": "Shashank",
+      "lastName": "Motruri",
+      "email": "motrurishashank000@gmail.com",
+      "password": "shashank",
+      "confirmPassword": "shashank",
+      "dob": "2021-12-26",
+      "photoURL": "/static/mock-images/avatars/avatar_11.jpg",
+      "CartProducts": [],
+      "Favourites": [],
+      "id": 2
     }
   ],
   "products": [

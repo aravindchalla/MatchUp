@@ -13,13 +13,9 @@ const ProductReducers = (state = initialState, action) => {
 		case actionTypes.SORT_POSTS_DESC:
 			action.payload.sort(function(a, b) {return (a.name < b.name ? 1 : a.name > b.name ? -1 : 0)});
 			return [...action.payload]
-/* 		case actionTypes.SEARCH_POSTS:
-			return {
-				...state,
-				products: state.searchResults.filter((post) =>
-					post.name.toLowerCase().includes(action.payload.toLowerCase())
-				),
-			}; */
+			case actionTypes.SORT_BY_PRICE:
+				action.payload.sort(function(a, b) {return (parseInt(a.price) < parseInt(b.price) ? 1 : parseInt(a.price) > parseInt(b.price) ? -1 : 0)});
+				return [...action.payload]
 		default:
 			return state;
 	}

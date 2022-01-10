@@ -119,6 +119,10 @@ export default function EcommerceShop() {
           type : "SORT_POSTS_DESC",
           payload: res
         }) 
+        case "SortByPrice" : return dispatch({ 
+          type : "SORT_BY_PRICE",
+          payload: res
+        }) 
         default : break;
       }
     }
@@ -258,6 +262,9 @@ export default function EcommerceShop() {
               </MenuItem>
               <MenuItem key="descending" value="Descending">
               Sort by Z to A
+              </MenuItem>
+              <MenuItem key="SortByPrice" value="SortByPrice">
+              Sort by Price
               </MenuItem>
         </Select>
       </FormControl>

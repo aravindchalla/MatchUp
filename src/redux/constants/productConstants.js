@@ -5,3 +5,4 @@ export const GET_POST_REQUEST = 'GET_POST_REQUEST';
 
 export const SORT_POSTS_ASC = 'SORT_POSTS_ASC';
 export const SORT_POSTS_DESC = 'SORT_POSTS_DESC';
+export const SORT_BY_PRICE = 'SORT_BY_PRICE';

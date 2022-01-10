@@ -23,17 +23,21 @@ const isuserExists = async (email) => {
             return isUser;
         }
     }
-    return false;
+    return isUser;
 }
 
 export default async function SignUp(user) {
     if(!user.email){
         return ({status: 401,msg : 'Please Enter all input fields!'});
     }
+    console.log(isuserExists(user.email) === true)
     if(isuserExists(user.email) === true){
-        console.log("HI")
+        console.log("User already exists")
         return ({status: 401,msg : 'User already exists'});
     } 
+    if(user.password !== user.confirmPassword){
+        return ({status: 401,msg : 'Password does not match. Please check password entered!'});
+    }
     else{
        return await axios.post(`${API_URL}/users`,user)
         .then((response) => { 

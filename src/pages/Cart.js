@@ -51,22 +51,27 @@ const RootStyle = styled('div')(({ theme }) => ({
   }
 }));
 
+
 function Cart(props) {
 
     const [search, setSearch] = useState('');
   
     const Products = useSelector((state) => state.cartReducer);
 
+    const [totalPrice, setTotalPrice] = useState(0);
     
   const [filteredProducts, setFilteredProducts] = useState(Products);
 
     useEffect(() => {
-      GetCartProducts()
-      .then((res => {
-        console.log(res.data);
-        props.upadteCartItems(res.data);
-      }))
-
+        let userId = localStorage.getItem('userId') ? parseInt(localStorage.getItem('userId')) : 1; 
+        GetCartProducts(userId)
+        .then((user) => {
+          let price = 0;
+          for(let i = 0; i < user.CartProducts.length;i++){
+            price += parseInt(user.CartProducts[i].quantity)*parseInt(user.CartProducts[i].price);
+          }
+          setTotalPrice(price);
+        })
       if (search) {
         console.log(search);
         const reqData = Object.values(Products).map((product) => {
@@ -82,9 +87,7 @@ function Cart(props) {
           })
         );
       } else setFilteredProducts(Products);
-
-      console.log(Products)
-    }, [search]);
+    });
 
   return (
     <Page title="Products">
@@ -137,9 +140,26 @@ function Cart(props) {
           }
         </Grid>
         <ProductCartWidget />
+        <br /><br /> <br /><br />
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="center"
+        >
+             <Typography variant="h4" sx={{ mb: 5 }}>Total Price : {totalPrice} $</Typography>
+          <Button variant="contained" size="large">Proceed to Checkout</Button> 
+        </Grid>
       </Container>
     </Page>
   );
 }
 
-export default Cart;
+const mapStateToProps = (state) => {
+  return {
+    cartProducts: state.cartReducer
+  }
+}
+
+export default connect(mapStateToProps)(Cart);

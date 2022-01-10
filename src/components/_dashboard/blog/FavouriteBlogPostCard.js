@@ -192,7 +192,7 @@ export default function BlogPostCard(props) {
           </InfoStyle>
         </CardContent>
         
-        <Button sx={{width: "100%",height: "100%",borderTopLeftRadius : 0,borderTopRightRadius : 0}} type="button" color="error" variant="contained" onClick={(e) => handleRemoveFavouriteItem(e,id)}>Remove from Cart</Button>
+        <Button sx={{width: "100%",height: "100%",borderTopLeftRadius : 0,borderTopRightRadius : 0}} type="button" color="error" variant="contained" onClick={(e) => handleRemoveFavouriteItem(e,id)}>Remove from Favourites</Button>
       
       </Card>
     </Grid>

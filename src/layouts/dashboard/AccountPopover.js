@@ -46,7 +46,6 @@ function AccountPopover(props) {
   };
   useEffect(() => {
     props.getUser();
-    console.log(props.user)
   })
 
   const [redirectToLogin,setRedirectToLogin] = useState(false)
